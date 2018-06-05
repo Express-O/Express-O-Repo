@@ -5,9 +5,11 @@ const bodyParser = require('body-parser')
 const compression = require('compression')
 const session = require('express-session')
 const passport = require('passport')
+
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const db = require('./db')
 const sessionStore = new SequelizeStore({db})
+
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
@@ -21,7 +23,7 @@ module.exports = app
  * keys as environment variables, so that they can still be read by the
  * Node process on process.env
  */
-if (process.env.NODE_ENV !== 'production') require('../secrets')
+if (process.env.NODE_ENV !== 'production') require('../secrets') //Put the keys in secrets file then put the secrets file in the .gitignore file
 
 // passport registration
 passport.serializeUser((user, done) => done(null, user.id))
@@ -40,6 +42,7 @@ const createApp = () => {
 
   // compression middleware
   app.use(compression())
+  //when we're sending datas back to the client, we will compress it then send it so it will make the quicker by 1/5 the time
 
   // session middleware with passport
   app.use(session({
@@ -57,7 +60,7 @@ const createApp = () => {
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
-
+  //path.join is just an utility method that tells our dir
   // any remaining requests with an extension (.js, .css, etc.) send 404
   app.use((req, res, next) => {
     if (path.extname(req.path).length) {
