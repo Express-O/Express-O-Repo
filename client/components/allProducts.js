@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {fetchProducts} from '../store'
 
+//need to add a ternary in return for if it is admin show add button
 class AllProducts extends React.Component {
   constructor(){
     super()
@@ -16,14 +17,14 @@ class AllProducts extends React.Component {
   }
 
   render() {
-    const drinks = this.props.allProducts.filter(drink => {
+    const drinks = this.props.AllProducts.filter(drink => {
       return drink.category === 'drink'
     })
-    const swag = this.props.allProducts.filter(mugs => {
+    const swag = this.props.AllProducts.filter(mugs => {
       return mugs.category === 'swag'
     })
 
-    const all = this.props.allProducts
+    const all = this.props.AllProducts
 
     let arr = all
 
@@ -54,7 +55,7 @@ class AllProducts extends React.Component {
 const mapStateToProps = state => {
   return (
     {
-      allProducts: state.allProducts
+      AllProducts: state.AllProducts
     }
   )
 }
