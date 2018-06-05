@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import {logout} from '../store'
+import AllProducts from './allProducts';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
@@ -23,6 +24,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
+        <NavLink to = "/products/coffee" component={AllProducts}>Coffee</NavLink>
+      <NavLink to = "/products/swag" component={AllProducts}>Swag</NavLink>
+      <NavLink to = "/products/all" component={AllProducts}>All</NavLink>
     </nav>
     <hr />
   </div>

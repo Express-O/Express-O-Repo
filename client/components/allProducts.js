@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-class AllProducts extends React.Component {
+export default class AllProducts extends React.Component {
   constructor(){
     super()
     this.state = {
@@ -15,12 +15,19 @@ class AllProducts extends React.Component {
   }
 
   render() {
-    const drinks = this.props.allProducts.filter(drink => {
-      return drink.category === 'drink'
-    })
-    const swag = this.props.allProducts.filter(mugs => {
-      return mugs.category === 'swag'
-    })
+    // const drinks = this.props.allProducts.filter(drink => {
+    //   return drink.category === 'drink'
+    // })
+    // const swag = this.props.allProducts.filter(mugs => {
+    //   return mugs.category === 'swag'
+    // })
+
+    // const all = this.props.allProducts
+
+    // let arr
+
+    // if(this.props.location )
+    console.log('MATCH PARAMS', this.props.location)
 
     return (
       <div>
@@ -40,15 +47,15 @@ class AllProducts extends React.Component {
     )
   }
 }
-const mapStateToProps = state => {
-  return (
-    {
-      allProducts: state.allProducts
-    }
-  )
-}
-const mapDispatchToProps = dispatch => {
+// const mapStateToProps = state => {
+//   return (
+//     {
+//       allProducts: state.allProducts
+//     }
+//   )
+// }
+// const mapDispatchToProps = dispatch => {
 
-}
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllProducts);
+// export default connect(mapStateToProps, mapDispatchToProps)(AllProducts);
