@@ -26,7 +26,7 @@ const Product = db.define('product', {
   },
   category: {
     type: Sequelize.ENUM,
-    values: ['category 1', 'category 2']
+    values: ['swag', 'drink']
   }
 })
 
