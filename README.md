@@ -128,3 +128,94 @@ Some developers may prefer to control deployment rather than rely on automation.
 Now, you should be deployed!
 
 Why do all of these steps? The big reason is because we don't want our production server to be cluttered up with dev dependencies like webpack, but at the same time we don't want our development git-tracking to be cluttered with production build files like bundle.js! By doing these steps, we make sure our development and production environments both stay nice and clean!
+
+
+// Team Contract
+<!-- Express-O 
+Express your espresso
+*This document describes our team social contract for this project*
+Reference Establishing Norms
+
+Roles
+Lead - daily rotation (Crystal, Molly, Jenny, Joyce)
+  Open up the discussion, get everyone ready to start the day
+  Oversee tasks open/ in progress
+  Leading check-ins (group everyone, talk about what was accomplished, what’s outstanding)
+
+Testmaster 
+Creating tests (will be in pairs)
+
+Daily process
+Morning standup started by yesterday's Lead
+Start at designated work time
+New roles assigned (by yesterday’s Taskmaster)
+Yesterday? Today? Obstacles? (by today’s Taskmaster)
+Decide on group learnings (maybe during or after lunch)
+Goals for the day/ Anticipated blockers
+Overall check-in
+Pair program on assigned tasks
+Record issues that are non-blocking and discuss right after lunch at re-group meeting
+Bring up any blocking issues after 15 minutes of spinning your wheels
+At 2:30pm have re-group meeting where you check-in with blockers, status updates and plan for EOD merge
+Immediately prior to end of day make applicable PRs, review each other’s code and merge into master
+Assign to 2 people (one who worked on the piece with you and one who didn't) to review PRs
+
+	
+Work process
+Asking for Help:
+3 tabs (ie. StackOverflow, Documentation, Tutorial, etc) - do our research first and ask each other (first 2 people that is available)
+After 20 mins, put in help ticket (move onto another piece in the meantime)
+Discuss optional solutions, next steps
+
+Work ‘After Hours’
+Individual tickets/ tasks - can be done any time
+Pairs - discuss individually and meet before end of day what you want to work on during the night (pick specific tickets)
+Slack after work is pushed so others can pull latest version
+Git pull before each branch
+
+Pairs vs Individual work
+Look at the entire feature
+Decide type of work: (distinguish within tickets)
+Individual work - smaller tasks that can be picked up and worked on individually (ie. CSS etc)
+Pair work - bigger and more complex tasks that require input and less familiarity
+Before diving into the work, talk through strategy on how to approach
+Up to pairs to decide switching point (both must have opportunity to code)
+
+Team expectations
+Each of us reserves the rights to our nights and weekends, and we have all been straightforward about when and how we can commit to working on the project
+If you have a blocking issue, slack before interrupting another’s train of coding-thought
+We will assign tasks vertically (instead of horizontally)
+None of us will specialize in terms of front-end and back-end code
+Don’t interrupt - raise your hand
+Share the mic
+Disagree often and discuss -- argue infrequently
+At least message the group when you change what you are working on
+Keep Slack open and use as main communication for breaks, etc.
+
+Issues
+If the group is divided on a certain decision we will take the following steps:
+Take 10-15 minute break
+List out the pros / cons
+Vote on it
+If the vote is split, escalate to a fellow or instructor
+If you are frustrated
+Take a walk or get some water (let group members know via slack)
+Talk constructively about actionable items (e.g. raise your hand instead of interrupting, let me learn and struggle until I ask you for help, etc.)
+Bring in a 3rd party (e.g. fellow, instructor) to mediate if you feel too frustrate
+
+Overall Strategy:
+Communicate / discuss with each other (ask for help, pair program, etc.)
+Frequent check-ins (ie. mid-day)
+Be open to the frustrated person and work with them
+Ask for constructive feedback
+Be respectful
+Talk individually (talk to Kait)
+
+	Person A / Person B
+	A: Hey, I feel like you’re not pulling your weight - can we talk about it?
+	B: What are you talking about? I was working on a more complex feature that took 
+awhile.
+A: Oh I didn't know that, let’s keep each other more updated regarding tasks and timelines and if you need help, reach out.
+B: Thanks -->
+
+
