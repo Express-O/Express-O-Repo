@@ -26,6 +26,41 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  streetName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  city: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  state: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  zip: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  country: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  apt: {
+    type: Sequelize.STRING,
+  },
+  poBox: {
+    type: Sequelize.STRING,
+    allowNull: false
   }
 })
 
