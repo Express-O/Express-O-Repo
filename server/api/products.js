@@ -55,7 +55,7 @@ router.put('/:productId', async(req, res, next) => {
       return res.sendStatus(404)
     }
 
-    await product.update(req.body)
+    await product.update(req.body)         // maybe break out ????????
     res.status(200).json(product)
   } catch (error) { next(error) }
 })

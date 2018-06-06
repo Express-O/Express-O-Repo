@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link, withRouter } from 'react-router-dom'
+import { fetchSingleProduct } from '../store/index';
 import { withRouter } from 'react-router-dom'
 import { fetchSingleProduct, fetchAllReviews } from '../store/index';
 
@@ -22,6 +24,13 @@ import { fetchSingleProduct, fetchAllReviews } from '../store/index';
                 <p>Details: {product.description}</p>
                 <p>Price: ${product.price}</p>
                 <button type="button">ADD TO CART</button>
+                <Link to={`/products/edit/${product.id}`}>
+                   <button type="button">EDIT PRODUCT</button>
+                </Link>
+
+                <Link to={`/products/edit/${product.id}`}>
+                   <button type="button">DELETE PRODUCT</button>
+                </Link>
                 <hr />
                 <h2>Customer Reviews</h2>
                 <div>
