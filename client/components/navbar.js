@@ -24,9 +24,11 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Link to="/signup">Sign Up</Link>
         </div>
       )}
-        <NavLink to = "/products/coffee" component={AllProducts}>Coffee</NavLink>
-      <NavLink to = "/products/swag" component={AllProducts}>Swag</NavLink>
-      <NavLink to = "/products/all" component={AllProducts}>All</NavLink>
+      <div>
+        <NavLink to = "/product/coffee" >Coffee</NavLink>
+        <NavLink to = "/product/swag" >Swag</NavLink>
+        <NavLink to = "/product/all" >All</NavLink>
+      </div>
     </nav>
     <hr />
   </div>

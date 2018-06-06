@@ -5,8 +5,9 @@ import axios from 'axios'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import product from './product'
+import allProducts from './allProducts'
 
-const reducer = combineReducers({user, product})
+const reducer = combineReducers({user, product, allProducts})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware.withExtraArgument({axios}),
   createLogger({collapsed: true})
@@ -16,3 +17,4 @@ const store = createStore(reducer, middleware)
 export default store
 export * from './user'
 export * from './product'
+export * from './allProducts'

@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react'
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {fetchProducts} from '../store'
 
 //need to add a ternary in return for if it is admin show add button
-class AllProducts extends React.Component {
+class AllProducts extends Component {
   constructor(){
     super()
     this.state = {
-
+      category: []
     }
   }
 
@@ -17,23 +17,19 @@ class AllProducts extends React.Component {
   }
 
   render() {
-    const drinks = this.props.AllProducts.filter(drink => {
-      return drink.category === 'drink'
-    })
-    const swag = this.props.AllProducts.filter(mugs => {
-      return mugs.category === 'swag'
-    })
+    console.log('LOCAL STATE', this.state)
+    // console.log('ALL PRODUCTS', this.props.allProducts)
+    let arr;
 
-    const all = this.props.AllProducts
-
-    let arr = all
-
-    if (this.props.location === "/products/coffee"){
-      arr = drinks
-    } else if (this.props.location === "/products/swag"){
-      arr = swag
+    if (this.props.location === "/product/coffee"){
+      arr = this.props.allDrinks
+    } else if (this.props.location === "/product/swag"){
+      arr = this.props.allSwag
+    } else {
+      arr = this.props.allProducts
     }
 
+    console.log('ARRAY', arr)
     return (
       <div>
         <ul>
@@ -55,13 +51,15 @@ class AllProducts extends React.Component {
 const mapStateToProps = state => {
   return (
     {
-      AllProducts: state.AllProducts
+      allProducts: state.allProducts,
+      allDrinks: state.allProducts.filter(drink=>drink.category === 'drink'),
+      allSwag: state.allProducts.filter(swag=>swag.category === 'swag')
     }
   )
 }
 const mapDispatchToProps = dispatch => {
   return ({
-    fetchProducts: () => dispatch(fetchProducts)
+    fetchProducts: () => dispatch(fetchProducts())
   })
 }
 
