@@ -39,7 +39,7 @@ export const postProduct = (product) => {
 //Initial State
 const defaultAllProducts = []
 
- //REDUCER
+//REDUCER
 export default function (state = defaultAllProducts, action) {
     switch (action.type) {
         case GET_ALL_PRODUCTS:
