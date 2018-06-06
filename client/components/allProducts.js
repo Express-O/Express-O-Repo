@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {fetchProducts} from '../store'
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
+import { fetchProducts } from '../store'
 
 //need to add a ternary in return for if it is admin show add button
 class AllProducts extends Component {
-  constructor(){
+  constructor() {
     super()
     this.state = {
       category: []
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.fetchProducts();
   }
 
@@ -20,10 +20,11 @@ class AllProducts extends Component {
     console.log('LOCAL STATE', this.state)
     // console.log('ALL PRODUCTS', this.props.allProducts)
     let arr;
-
-    if (this.props.location === "/product/coffee"){
+    console.log('location=======>', this.props.location)
+    if (this.props.location.pathname === "/product/coffee") {
+      console.log('HEEREE!!')
       arr = this.props.allDrinks
-    } else if (this.props.location === "/product/swag"){
+    } else if (this.props.location.pathname === "/product/swag") {
       arr = this.props.allSwag
     } else {
       arr = this.props.allProducts
@@ -35,13 +36,14 @@ class AllProducts extends Component {
         <ul>
           {
             arr.map(product => {
-            return (
-              <li key={product.id}>
-                <img src ={product.photo} />
-                <Link to={`/products/${product.id}`}><p>{product.title}</p></Link>
-                <p>{product.price}</p>
-              </li>
-            )})
+              return (
+                <li key={product.id}>
+                  <img src={product.photo} />
+                  <Link to={`/products/${product.id}`}><p>{product.title}</p></Link>
+                  <p>{product.price}</p>
+                </li>
+              )
+            })
           }
         </ul>
       </div>
@@ -52,8 +54,8 @@ const mapStateToProps = state => {
   return (
     {
       allProducts: state.allProducts,
-      allDrinks: state.allProducts.filter(drink=>drink.category === 'drink'),
-      allSwag: state.allProducts.filter(swag=>swag.category === 'swag')
+      allDrinks: state.allProducts.filter(drink => drink.category === 'drink'),
+      allSwag: state.allProducts.filter(swag => swag.category === 'swag')
     }
   )
 }
@@ -63,4 +65,4 @@ const mapDispatchToProps = dispatch => {
   })
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllProducts);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AllProducts));

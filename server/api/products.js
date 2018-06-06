@@ -16,7 +16,7 @@ router.post('/', async (req, res, next) => {
     const newProduct = await Product.create(req.body)
     res.json(newProduct)
   }
-  catch (err){
+  catch (err) {
     next(err)
   }
 })
