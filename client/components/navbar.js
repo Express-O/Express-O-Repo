@@ -7,7 +7,7 @@ import AllProducts from './AllProducts';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
-    <h1>BOILERMAKER</h1>
+    <h1>Express-O</h1>
     <nav>
       {isLoggedIn ? (
         <div>
@@ -28,6 +28,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
         <NavLink to = "/product/coffee" >Coffee</NavLink>
         <NavLink to = "/product/swag" >Swag</NavLink>
         <NavLink to = "/product/all" >All</NavLink>
+        <NavLink to ="/aboutUs">About Us</NavLink>
       </div>
     </nav>
     <hr />
