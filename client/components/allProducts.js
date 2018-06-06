@@ -22,7 +22,6 @@ class AllProducts extends Component {
     let arr;
     console.log('location=======>', this.props.location)
     if (this.props.location.pathname === "/product/coffee") {
-      console.log('HEEREE!!')
       arr = this.props.allDrinks
     } else if (this.props.location.pathname === "/product/swag") {
       arr = this.props.allSwag
