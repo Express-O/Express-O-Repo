@@ -10,15 +10,17 @@ const getSingleProduct = product => ({
     product
 })
 
+
 //Thunk Creator
 export const fetchSingleProduct = (productId) => {
     console.log("FETCH PRODUCT ACTION TRIGGERED" )
     return async (dispatch, getState, {axios}) => {
         const res = await axios.get(`/api/products/${productId}`);
         const data = res.data;
-        dispatch(getSingleProduct(data))
+        dispatch(getSingleProduct(data));
     }
 }
+
 
 //Initial State
 const defaultProduct = {}
@@ -26,9 +28,10 @@ const defaultProduct = {}
  //REDUCER
 export default function (state = defaultProduct, action) {
  switch (action.type) {
-   case GET_SINGLE_PRODUCT:
-     return action.product
-   default:
-     return state
+    case GET_SINGLE_PRODUCT:
+        return action.product
+
+    default:
+        return state
  }
 }
