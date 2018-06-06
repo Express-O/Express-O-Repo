@@ -94,13 +94,7 @@ const startListening = () => {
   require('./socket')(io)
 }
 
-<<<<<<< HEAD
-const syncDb = () => db.sync(
-  {force: false}
-)
-=======
 const syncDb = () => db.sync({ force: true })
->>>>>>> master
 
 // This evaluates as true when this file is run directly from the command line,
 // i.e. when we say 'node server/index.js' (or 'nodemon server/index.js', or 'nodemon server', etc)
