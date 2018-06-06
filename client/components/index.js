@@ -12,4 +12,3 @@ export {default as NewProduct} from './NewProduct'
 export {default as ProductForm} from './ProductForm'
 export {default as HomePage} from './HomePage'
 export {default as Footer} from './Footer'
-

@@ -1,12 +1,11 @@
 const router = require('express').Router()
-const { Product } = require('../db/models')
+const { Product, Review, User } = require('../db/models')
 
 router.get('/', async (req, res, next) => {
   try {
     const allProducts = await Product.findAll()
     res.json(allProducts)
-  }
-  catch (err) {
+  } catch (err) {
     next(err)
   }
 })
@@ -16,6 +15,19 @@ router.get('/:productId', async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.productId);
     res.json(product);
+  } catch (error) { next(error) }
+})
+
+//Get all reviews for a product by product id
+router.get('/:productId/reviews', async (req, res, next) => {
+  const productId = req.params.productId;
+  try {
+    const reviews = await Review.findAll({
+      attributes: ['title', 'rating', 'body', 'date'],
+      where: { productId },
+      include: [{ model: User, attributes: ['firstName'] }]
+    })
+    res.json(reviews);
   } catch (error) { next(error) }
 })
 

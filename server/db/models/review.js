@@ -23,8 +23,11 @@ const Review = db.define('review', {
       min: 1,
       max: 5
     }
+  },
+  date: {
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.NOW
   }
-
 })
 
 module.exports = Review;
