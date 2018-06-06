@@ -7,15 +7,15 @@ const LineItem = require('./lineItem');
 //Associations:
 Order.belongsTo(User);
 User.hasMany(Order);
+
 Product.hasMany(Review);
 Review.belongsTo(Product);
+
 User.hasMany(Review);
 Review.belongsTo(User);
-LineItem.belongsTo(Order);
 
-
-Product.belongsToMany(Order, { through: 'PurchaseHistory' });
-Order.belongsToMany(Product, { through: 'PurchaseHistory' });
+Product.belongsToMany(Order, { through: LineItem });
+Order.belongsToMany(Product, { through: LineItem });
 
 
 module.exports = {
