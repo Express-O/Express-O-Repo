@@ -22,13 +22,13 @@ export const fetchProducts = () => {
 //Initial State
 const defaultAllProducts = []
 
- //REDUCER
+//REDUCER
 export default function (state = defaultAllProducts, action) {
- switch (action.type) {
-   case GET_ALL_PRODUCTS:
-     return action.allProducts
-   default:
-     return state
- }
+    switch (action.type) {
+        case GET_ALL_PRODUCTS:
+            return action.allProducts
+        default:
+            return state
+    }
 }
 
