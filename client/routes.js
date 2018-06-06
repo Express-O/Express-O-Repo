@@ -2,13 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-<<<<<<< HEAD
-import {Login, Signup, UserHome, SingleProduct, AllProducts, NewProduct} from './components'
-import {me} from './store'
-=======
-import { Login, Signup, UserHome, SingleProduct, AllProducts } from './components'
+import { Login, Signup, UserHome, SingleProduct, AllProducts, HomePage, NewProduct } from './components'
 import { me } from './store'
->>>>>>> 63a0e928ff02c0b763984447514b3ecba965693b
 
 /**
  * COMPONENT
@@ -26,20 +21,14 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-<<<<<<< HEAD
         <Route path="/products/add" component={NewProduct} />
         <Route path="/products/:productId" component={SingleProduct} />
         <Route exact path="/products" component={AllProducts} />
         <Route exact path="/products/coffee" component={AllProducts} />
         <Route exact path="/products/swag" component={AllProducts} />
         <Route exact path="/products/all" component={AllProducts} />
-=======
-        <Route exact path="/product/coffee" component={AllProducts} />
-        <Route exact path="/product/swag" component={AllProducts} />
-        <Route exact path="/product/all" component={AllProducts} />
-        <Route path="/product/:productId" component={SingleProduct} />
-        <Route exact path="/product" component={AllProducts} />
->>>>>>> 63a0e928ff02c0b763984447514b3ecba965693b
+        <Route path="/aboutUs" component={HomePage} />
+
         {
           isLoggedIn &&
           <Switch>
