@@ -3,11 +3,21 @@ const { Product } = require('../db/models')
 
 router.get('/', async (req, res, next) => {
   try {
-    const allProducts = Product.findAll()
+    const allProducts = await Product.findAll()
     res.json(allProducts)
   }
-  catch (error) {
-    next(error)
+  catch (err) {
+    next(err)
+  }
+})
+
+router.post('/', async (req, res, next) => {
+  try {
+    const newProduct = await Product.create(req.body)
+    res.json(newProduct)
+  }
+  catch (err){
+    next(err)
   }
 })
 
