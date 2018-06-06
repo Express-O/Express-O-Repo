@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { fetchSingleProduct } from '../store/index';
+import { fetchSingleProduct, fetchAllReviews } from '../store/index';
 
  class SingleProduct extends Component {
     componentDidMount() {
-        this.props.fetchSingleProduct(this.props.selectedProduct)
+        const { selectedProduct } = this.props;
+        this.props.fetchSingleProduct(selectedProduct);
+        this.props.fetchAllReviews(selectedProduct);
     }
 
     render() {
-        const { product, selectedProduct } = this.props;
+        const { product, selectedProduct, singleProductReviews } = this.props;
         const selected = selectedProduct || {};
         const loading = <h1>Loading...</h1>
         const content = (
@@ -20,6 +22,26 @@ import { fetchSingleProduct } from '../store/index';
                 <p>Details: {product.description}</p>
                 <p>Price: ${product.price}</p>
                 <button type="button">ADD TO CART</button>
+                <hr />
+                <h2>Customer Reviews</h2>
+                <div>
+                    <ul>
+                    {
+                        singleProductReviews.map(review => {
+                            return (
+                                <div key={review.id} >
+                                        <h2>{review.title}</h2>
+                                        <p>By {review.user.firstName} on {review.date.slice(0, 10)}</p>
+                                        <p>Rating: {review.rating}</p>
+                                        <p>{review.body}</p>
+                                        <hr />
+                                    {/* <button className='remove' onClick={() => {deletingCountry(country.id)}}>Remove</button> */}
+                                </div>
+                            )
+                        })
+                    }
+                    </ul>
+                </div>
             </div>
         )
 
@@ -37,13 +59,15 @@ const mapState = (state, ownProps) => {
     const productId = +ownProps.match.params.productId;
     return {
         product: state.product,
-        selectedProduct: productId
+        selectedProduct: productId,
+        singleProductReviews: state.singleProductReviews
     }
 }
 
 const mapDispatch = (dispatch) => {
     return {
-        fetchSingleProduct: (productId) => dispatch(fetchSingleProduct(productId))
+        fetchSingleProduct: (productId) => dispatch(fetchSingleProduct(productId)),
+        fetchAllReviews: (productId) => dispatch(fetchAllReviews(productId))
     }
 }
 

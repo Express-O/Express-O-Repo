@@ -22,7 +22,7 @@ const Product = db.define('product', {
   },
   photo: {
     type: Sequelize.STRING,
-    defaultValue: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/No_image_available_600_x_450.svg/640px-No_image_available_600_x_450.svg.png'
+    defaultValue: 'https://www.blackberrycafe.cz/wp-content/uploads/2017/05/Product-Image-Coming-Soon.png'
   },
   category: {
     type: Sequelize.ENUM,

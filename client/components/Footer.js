@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 const Footer = () => {
   return (
     <div>
-      <h1>Contact Info</h1>
-      <h2>Email: expressO@exressO.com</h2>
-      <h2>Instagram: express-O</h2>
-      <h2>Twitter: @expressO</h2>
-      <h2>Phone: 555-555-5555</h2>
+      <p>Contact Info</p>
+      <p>Email: expressO@exressO.com</p>
+      <p>Instagram: express-O</p>
+      <p>Twitter: @expressO</p>
+      <p>Phone: 555-555-5555</p>
     </div>
   )
 }
