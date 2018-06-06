@@ -23,10 +23,10 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/products/add" component={NewProduct} />
         <Route path="/products/:productId" component={SingleProduct} />
-        <Route exact path="/products" component={AllProducts} />
-        <Route exact path="/products/coffee" component={AllProducts} />
-        <Route exact path="/products/swag" component={AllProducts} />
-        <Route exact path="/products/all" component={AllProducts} />
+        <Route exact path="/product" component={AllProducts} />
+        <Route exact path="/product/coffee" component={AllProducts} />
+        <Route exact path="/product/swag" component={AllProducts} />
+        <Route exact path="/product/all" component={AllProducts} />
         <Route path="/aboutUs" component={HomePage} />
 
         {
