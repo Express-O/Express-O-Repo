@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Product} = require('../server/db/models')
+const {User, Product, Review} = require('../server/db/models')
 
 /**
  * Welcome to the seed file! This seed file uses a newer language feature called...
@@ -27,7 +27,7 @@ async function seed () {
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
   console.log(`seeded ${users.length} users`)
-  console.log(`seeded successfully`)
+  console.log(`seeded users successfully`)
 
   const products = await Promise.all([
     Product.create({title: `Lattè`, description: `is a coffee drink made with espresso and steamed milk. The term as used in English is a shortened form of the Italian caffè latte [kafˈfɛ ˈlatte], caffelatte [kaffeˈlatte] or caffellatte [kaffelˈlatte], which means "milk coffee". Our lattès are made from our premium beans`, price: 400, inventory: 15, photo: 'https://dailycoffeenews.com/wp-content/uploads/2016/01/Sawada-Coffee-Latte-1.jpg',  category: 'drink'}),
@@ -46,12 +46,19 @@ async function seed () {
     Product.create({title: `Cold Drip`, description: `For when you get serious about your cold drip. This system ensures the most perfect cold drip drink everytime`, price: 15000, inventory: 10, photo: 'https://images-na.ssl-images-amazon.com/images/I/41tRrVDoWJL._SL500_AC_SS350_.jpg',  category: 'swag'})
   ]);
   console.log(`seeded ${products.length} products`)
-  console.log(`seeded successfully`)
-  // const reviews = await Promise.all([
-  //   Review.create({title: 'Best Late Ever!!!', body: 'Holy cow guys this '})
-  // ])
-
-
+  console.log(`seeded products  successfully`)
+  const reviews = await Promise.all([
+    Review.create({title: 'Best Late Ever!!!', body: 'Holy cow guys this latte is one of the most delicious lattes I have ever tasted. I do not know where they source their beans or milk but dang this is good!', rating: 5, userId: 2, productId: 1}),
+    Review.create({title: 'Ok lattee', body: 'I mean I guess this is a pretty good Latte. Its not bad but its nothing to write home about', rating: 3.5, userId: 1, productId: 1}),
+    Review.create({title: 'Best Cappuccino Ever!!!', body: 'Holy cow guys this drink is one of the most delicious drinks s I have ever tasted. I do not know where they source their beans or milk but dang this is good!', rating: 5, userId: 2, productId: 2}),
+    Review.create({title: 'Ok cappuccino', body: 'I mean I guess this is a pretty good drink. Its not bad but its nothing to write home about', rating: 3.5, userId: 1, productId: 2}),
+    Review.create({title: 'Best Macchiato Ever!!!', body: 'Holy cow guys this drink is one of the most delicious drinks s I have ever tasted. I do not know where they source their beans or milk but dang this is good! I thought it had chocolate in it, but I didnt mind it when I found out it didnt!', rating: 5, userId: 2, productId: 3}),
+    Review.create({title: 'Ok Macchiato', body: 'I mean I guess this is a pretty good drink. Its not bad but its nothing to write home about. Although I was pretty upset to find out there was no chocolate', rating: 2.5, userId: 1, productId: 3}),
+    Review.create({title: 'Cool poster', body: 'I love coffee but can never remember all the components of the different drinks so this looks great and is helpful', rating: 5, userId: 2, productId: 2}),
+    Review.create({title: 'Scare your visitors with delicious coffee', body: 'Ok I guess this is pretty cool, my friends think this is just a decoration but really Im just brewing my coffee', rating: 4.5, userId: 1, productId: 10}),
+  ]);
+  console.log(`seeded ${reviews.length} products`)
+  console.log(`seeded reviews successfully`)
 }
 
 // Execute the `seed` function, IF we ran this module directly (`node seed`).
