@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-import { fetchSingleProduct, fetchAllReviews, postCartProduct } from '../store/index';
+import { fetchSingleProduct, fetchAllReviews, addCart } from '../store/index';
 
 
 
@@ -23,7 +23,7 @@ import { fetchSingleProduct, fetchAllReviews, postCartProduct } from '../store/i
                 <img src={product.photo} />
                 <p>Details: {product.description}</p>
                 <p>Price: ${product.price}</p>
-                <button type="button" onClick={() => postCartProduct(product)}>ADD TO CART</button>
+                <button type="button" onClick={() => this.props.addCart(product)}>ADD TO CART</button>
 
                 <Link to={`/products/edit/${product.id}`}>
                    <button type="button">EDIT PRODUCT</button>
@@ -75,10 +75,11 @@ const mapState = (state, ownProps) => {
 }
 
 const mapDispatch = (dispatch) => {
-    return {
-        fetchSingleProduct: (productId) => dispatch(fetchSingleProduct(productId)),
-        fetchAllReviews: (productId) => dispatch(fetchAllReviews(productId))
-    }
+  return {
+    fetchSingleProduct: (productId) => dispatch(fetchSingleProduct(productId)),
+    fetchAllReviews: (productId) => dispatch(fetchAllReviews(productId)),
+    addCart: (product) => dispatch(addCart(product))
+  }
 }
 
 export default withRouter(connect(mapState, mapDispatch)(SingleProduct))

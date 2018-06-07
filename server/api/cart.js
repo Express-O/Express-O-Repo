@@ -27,7 +27,6 @@ router.get('/', (req, res, next) => {
 // PUT update cart with product
 router.put('/', (req, res, next) => {
     const product = req.body
-    console.log('Product', product)
     const cart = req.session.cart
     const updatedCart = cart.push(product)
     res.status(200).json(updatedCart)
