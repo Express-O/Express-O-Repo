@@ -18,6 +18,25 @@ router.get('/:productId', async (req, res, next) => {
   } catch (error) { next(error) }
 })
 
+//POST a review for a product
+//Blocker: this post is missing a user which will cause the SingleProduct view to fail
+router.post('/:productId/:userId/review', async (req, res, next) => {
+  const productId = req.params.productId;
+  const userId = req.params.userId;
+  console.log('LOOOOOOOOOOOOOOOOOOOOOOOOOK HERE', productId, userId)
+  try {
+    const newReview = await Review.create({
+      title: req.body.title,
+      body: req.body.body,
+      rating: req.body.rating,
+      date: req.body.date,
+      productId,
+      userId
+    })
+    res.status(201).json(newReview)
+  } catch (error) { next(error) }
+})
+
 //Get all reviews for a product by product id
 router.get('/:productId/reviews', async (req, res, next) => {
   const productId = req.params.productId;
