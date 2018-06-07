@@ -5,7 +5,6 @@ const bodyParser = require('body-parser')
 const compression = require('compression')
 const session = require('express-session')
 const passport = require('passport')
-
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const db = require('./db')
 const sessionStore = new SequelizeStore({ db })
@@ -54,6 +53,12 @@ const createApp = () => {
   app.use(passport.initialize())
   app.use(passport.session())
 
+// Add cart to session
+  app.use((req, res, next) => {
+    if (!req.session.cart) req.session.cart = {}
+    next()
+  })
+
   // auth and api routes
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
@@ -94,7 +99,7 @@ const startListening = () => {
   require('./socket')(io)
 }
 
-const syncDb = () => db.sync({ force: true })
+const syncDb = () => db.sync({ force: false })
 
 // This evaluates as true when this file is run directly from the command line,
 // i.e. when we say 'node server/index.js' (or 'nodemon server/index.js', or 'nodemon server', etc)
