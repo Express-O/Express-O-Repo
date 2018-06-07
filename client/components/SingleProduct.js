@@ -42,7 +42,6 @@ import { fetchSingleProduct, fetchAllReviews } from '../store/index';
                                         <p>Rating: {review.rating}</p>
                                         <p>{review.body}</p>
                                         <hr />
-                                    {/* <button className='remove' onClick={() => {deletingCountry(country.id)}}>Remove</button> */}
                                 </div>
                             )
                         })

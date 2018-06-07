@@ -9,8 +9,7 @@ class ReviewForm extends Component {
         this.state = {
           title: '',
           body: '',
-          rating: '',
-          date: new Date()
+          rating: ''
       }
       this.handleChange = this.handleChange.bind(this)
       this.handleSubmit = this.handleSubmit.bind(this)    
@@ -24,20 +23,25 @@ class ReviewForm extends Component {
 
     async handleSubmit(event) {
         event.preventDefault();
-        console.log("HELLLLLLLLLLLLLLLLLLLLLLLLLLLLLO", this.state)
+
         let newReview = {
           title: this.state.title,
           body: this.state.body,
           rating: this.state.rating,
-          date: this.state.date,
+          date: new Date()
         }
         const { selectedProductId, userIdNum } = this.props;
         let posted = await this.props.postReview(selectedProductId, userIdNum, newReview)
         this.props.history.push(`/products/${posted.productId}/${posted.userId}/review`)
-      }
 
-    render() {
-        
+        this.setState({
+          title: '',
+          body: '',
+          rating: ''
+      })
+    }
+
+    render() {       
         return (
             <div>
             <form onSubmit={this.handleSubmit}>
@@ -47,20 +51,15 @@ class ReviewForm extends Component {
               <input type="text" name="title" value={this.state.title} onChange={this.handleChange} />
     
               <label>
+                Rating:
+              </label>
+              <input type="number" min="1" max="5" name="rating" value={this.state.rating} onChange={this.handleChange} />
+
+              <label>
                 Write your review here:
               </label>
               <input type="text" name="body" value={this.state.body} onChange={this.handleChange} />
-    
-              <label>
-                Rating:
-              </label>
-              <input type="text" name="rating" value={this.state.rating} onChange={this.handleChange} />
-    
-              <label>
-                date:
-              </label>
-              <input type="text" name="date" value={this.state.date} onChange={this.handleChange} />
-    
+
               <button type="submit">Add Review</button>
             </form>
             </div>
@@ -79,7 +78,7 @@ const mapDispatch = (dispatch, ownProps) => {
     const productId = +ownProps.match.params.productId;
     const userId = authDummyUser.id
     return {
-        postReview: (productId, review) => dispatch(postReview(productId, userId, review)),
+        postReview: (productId, userId, review) => dispatch(postReview(productId, userId, review)),
         selectedProductId: productId,
         userIdNum: userId
     }

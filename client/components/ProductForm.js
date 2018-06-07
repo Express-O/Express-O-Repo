@@ -36,6 +36,15 @@ class ProductForm extends Component {
     }
     let posted = await this.props.postProduct(newProduct)
     this.props.history.push(`/products/${posted.id}`)
+
+    this.setState({
+      title: '',
+      description: '',
+      price: '',
+      inventory: '',
+      photo: '',
+      category: ''
+    })
   }
 
   render() {
@@ -55,12 +64,12 @@ class ProductForm extends Component {
           <label>
             Product Price:
           </label>
-          <input type="text" name="price" value={this.state.price} onChange={this.handleChange} />
+          <input type="number" min="0" name="price" value={this.state.price} onChange={this.handleChange} />
 
           <label>
             Inventory Quantity:
           </label>
-          <input type="text" name="inventory" value={this.state.inventory} onChange={this.handleChange} />
+          <input type="number" min="0" name="inventory" value={this.state.inventory} onChange={this.handleChange} />
 
           <label>
             Product Image:
