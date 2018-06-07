@@ -55,22 +55,22 @@ class ProductForm extends Component {
           <label>
             Product Price:
           </label>
-          <input type="text" name="price" value={this.state.price} onChange={this.handleChange}/>
+          <input type="text" name="price" value={this.state.price} onChange={this.handleChange} />
 
           <label>
             Inventory Quantity:
           </label>
-          <input type="text" name="inventory" value={this.state.inventory} onChange={this.handleChange}/>
+          <input type="text" name="inventory" value={this.state.inventory} onChange={this.handleChange} />
 
           <label>
             Product Image:
           </label>
-          <input type="text" name="photo" value={this.state.photo} onChange={this.handleChange}/>
+          <input type="text" name="photo" value={this.state.photo} onChange={this.handleChange} />
 
           <label>
             Product Category:
           </label>
-          <input type="text" name="category" value={this.state.category} onChange={this.handleChange}/>
+          <input type="text" name="category" value={this.state.category} onChange={this.handleChange} />
 
           <button type="submit">Add Product</button>
         </form>
