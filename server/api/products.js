@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
 // GET a product by id
 router.get('/:productId', async (req, res, next) => {
   try {
-    const product = await Product.findById(req.params.productId);
+    const product = await Product.findById(req.params.productId, {include: [{all: true}]});
     res.json(product);
   } catch (error) { next(error) }
 })

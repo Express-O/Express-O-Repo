@@ -45,9 +45,13 @@ async function seed () {
     Product.create({title: `Coffee Percolator, Mad Scientist Edition`, description: `When a a normal percolator is not enough for you, unleash your inner mad scientist with this contraption. As always we use fine tempered glass so no need to worry about temper fluctuations`, price: 15000, inventory: 10, photo: 'https://i.pinimg.com/originals/57/df/83/57df838b883e9eb97938926f04b5ea40.jpg',  category: 'swag'}),
     Product.create({title: `Cold Drip`, description: `For when you get serious about your cold drip. This system ensures the most perfect cold drip drink everytime`, price: 15000, inventory: 10, photo: 'https://images-na.ssl-images-amazon.com/images/I/41tRrVDoWJL._SL500_AC_SS350_.jpg',  category: 'swag'})
   ]);
-
   console.log(`seeded ${products.length} products`)
   console.log(`seeded successfully`)
+  // const reviews = await Promise.all([
+  //   Review.create({title: 'Best Late Ever!!!', body: 'Holy cow guys this '})
+  // ])
+
+
 }
 
 // Execute the `seed` function, IF we ran this module directly (`node seed`).
