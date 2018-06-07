@@ -65,7 +65,6 @@ export default function (state = defaultAllProducts, action) {
       return [...state, action.product]
 
     case SET_UPDATED_PRODUCT:
-      console.log('update product action triggered ==========')
       const updateProductId = action.product.id;
       const productCopy = state.slice();
       const updatedProduct = productCopy.map(product => {
