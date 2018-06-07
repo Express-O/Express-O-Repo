@@ -26,7 +26,6 @@ class EditProduct extends Component {
 
 
   render () {
-console.log("STATE", this.state)
     return (
       <div>
         <h1>Edit Product Form</h1>
@@ -70,9 +69,6 @@ console.log("STATE", this.state)
 
 const mapState = (state, ownProps) => {
   const productId = +ownProps.match.params.productId
-  console.log('productId', productId)
-  console.log('Edit Product STATE=====', state)
-
   return {
     product: state.allProducts.find(product => productId === product.id)
   }
