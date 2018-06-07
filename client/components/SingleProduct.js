@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-import { fetchSingleProduct, fetchAllReviews } from '../store/index';
+import { fetchSingleProduct, fetchAllReviews, postCartProduct } from '../store/index';
+
+
 
  class SingleProduct extends Component {
     componentDidMount() {
@@ -21,7 +23,8 @@ import { fetchSingleProduct, fetchAllReviews } from '../store/index';
                 <img src={product.photo} />
                 <p>Details: {product.description}</p>
                 <p>Price: ${product.price}</p>
-                <button type="button">ADD TO CART</button>
+                <button type="button" onClick={() => postCartProduct(product)}>ADD TO CART</button>
+
                 <Link to={`/products/edit/${product.id}`}>
                    <button type="button">EDIT PRODUCT</button>
                 </Link>
