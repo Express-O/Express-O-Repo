@@ -7,14 +7,7 @@ class EditProduct extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      title: '',
-      description: '',
-      price: '',
-      inventory: '',
-      photo: '',
-      category: ''
-    }
+    this.state = props.product
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -26,23 +19,14 @@ class EditProduct extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    let newProduct = {
-      title: this.state.title,
-      description: this.state.description,
-      price: this.state.price,
-      inventory: this.state.inventory,
-      photo: this.state.photo,
-      category: this.state.category
-    }
-    console.log('newProduct has id????', newProduct)
-    this.props.editProduct(newProduct)
-    // this.props.history.push(`/products/${newProduct.id}`)
+    event.preventDefault()
+    this.props.editProduct(this.state)
+    this.props.history.push(`/products/${this.state.id}`)
   }
 
 
   render () {
-
+console.log("STATE", this.state)
     return (
       <div>
         <h1>Edit Product Form</h1>
@@ -90,7 +74,7 @@ const mapState = (state, ownProps) => {
   console.log('Edit Product STATE=====', state)
 
   return {
-    updateProduct: state.allProducts.find(product => productId === product.id)
+    product: state.allProducts.find(product => productId === product.id)
   }
 }
 

@@ -60,7 +60,6 @@ const User = db.define('user', {
   },
   poBox: {
     type: Sequelize.STRING,
-    allowNull: false
   }
 })
 
