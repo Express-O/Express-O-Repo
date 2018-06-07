@@ -3,10 +3,10 @@ const Sequelize = require('sequelize')
 
 const Order = db.define('order', {
     status: {
-        type: Sequelize.ENUM('active', 'inactive'),
-        defaultValue: 'active'
+        type: Sequelize.ENUM('cart', 'incomplete'),
+        defaultValue: 'cart'
     },
-    total: Sequelize.DECIMAL
+    total: Sequelize.INTEGER
 });
 
 module.exports = Order

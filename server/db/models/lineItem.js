@@ -1,16 +1,13 @@
 const db = require('../db')
 const Sequelize = require('sequelize')
 
-const LineItem = db.define('lineItem', {
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
+const LineItem = db.define('LineItem', {
   quantity: {
     type: Sequelize.INTEGER,
     defaultValue: 1
   },
-  price: Sequelize.DECIMAL
+  price: Sequelize.INTEGER,
+
 })
 
 module.exports = LineItem
