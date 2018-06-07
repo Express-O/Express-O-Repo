@@ -5,7 +5,6 @@ const bodyParser = require('body-parser')
 const compression = require('compression')
 const session = require('express-session')
 const passport = require('passport')
-
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const db = require('./db')
 const sessionStore = new SequelizeStore({ db })
@@ -53,6 +52,12 @@ const createApp = () => {
   }))
   app.use(passport.initialize())
   app.use(passport.session())
+
+// Add cart to session
+  app.use((req, res, next) => {
+    if (!req.session.cart) req.session.cart = []
+    next()
+  })
 
   // auth and api routes
   app.use('/auth', require('./auth'))
