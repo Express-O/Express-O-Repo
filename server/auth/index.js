@@ -32,6 +32,18 @@ router.post('/signup', (req, res, next) => {
     })
 })
 
+router.put('/editProfile', async (req, res, next) => {
+  try {
+    const [numberOfAffectedRows, affectedRows] = await User.update(req.body, {
+      where: {userId: req.body.user.id},
+      returning: true,
+      plain: true
+    })
+    res.json(affectedRows)
+  }
+  catch (error){ next(error) }
+})
+
 router.post('/logout', (req, res) => {
   req.logout()
   req.session.destroy()

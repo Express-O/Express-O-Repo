@@ -27,13 +27,24 @@ export const me = () =>
       .then(res =>
         dispatch(getUser(res.data || defaultUser)))
       .catch(err => console.log(err))
-      
+
 export const auth = (userInfo) =>
   dispatch =>
     axios.post(`/auth/${userInfo.formName}`, userInfo)
       .then(res => {
         dispatch(getUser(res.data))
         history.push('/product/all')
+      }, authError => { // rare example: a good use case for parallel (non-catch) error handler
+        dispatch(getUser({ error: authError }))
+      })
+      .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
+
+export const editProfile = (userInfo) =>
+  dispatch =>
+    axios.put(`/auth/${userInfo.formName}`, userInfo)
+      .then(res => {
+        dispatch(getUser(res.data))
+        history.push('/home')
       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
         dispatch(getUser({ error: authError }))
       })
@@ -47,6 +58,7 @@ export const logout = () =>
         history.push('/login')
       })
       .catch(err => console.log(err))
+
 
 /**
  * REDUCER

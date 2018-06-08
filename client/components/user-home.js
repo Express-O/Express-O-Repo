@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 /**
  * COMPONENT
@@ -19,6 +20,7 @@ export const UserHome = (props) => {
           Address:{streetName} {apt} {city} {state} {zip} {country}
         </div>
       </div>
+      <Link to
       <button type="button">EDIT DETAILS</button>
       <div>
         <h4>Past Purchases:</h4>

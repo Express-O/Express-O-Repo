@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
-//For guests who aren't logged in/don't have an account to 
+//we're not sure yet if this is a useful form...we'll let you know.
 
-export default class DeliveryForm extends Component{
+export default class EditUserForm extends Component{
   constructor(){
     super()
     this.state = {
