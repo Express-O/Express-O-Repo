@@ -4,6 +4,7 @@ import axios from 'axios'
 const GET_CART = 'GET_CART'
 const SET_CART = 'SET_CART'
 const REMOVED_PRODUCT = 'REMOVED_PRODUCT'
+const SET_EMPTY_CART = 'SET_EMPTY_CART'
 // const SET_UPDATED_CART = 'SET_UPDATED_CART'
 
 
@@ -22,6 +23,11 @@ const setCart = cart => ({
 const removedProduct = productId => ({
   type: REMOVED_PRODUCT,
   productId: productId
+})
+
+const setEmptyCart = cart => ({
+  type: SET_EMPTY_CART,
+  cart
 })
 
 
@@ -43,13 +49,22 @@ export const addCart = (product) => {
   }
 }
 
+export const emptyCart = () => {
+  console.log('empty cart action triggered ===================')
+  return async (dispatch) => {
+    const res = await axios.delete('/api/cart')
+    const data = res.data
+    dispatch(setEmptyCart(data))
+  }
+}
+
 export const removeProduct = (productId) => {
-  console.log('remove product action triggered ===================')
   return async (dispatch) => {
     const res = await axios.delete(`/api/cart/${productId}`)
     dispatch(removedProduct(productId))
   }
 }
+
 
 
 //Initial State
@@ -70,6 +85,10 @@ export default function (state = defaultCart, action) {
       const cartCopy = state.slice()
       const filtered = cartCopy.filter(product => productId !== product.id)
       return filtered
+
+    case SET_EMPTY_CART:
+      console.log('SET EMPTY CART triggered ===========')
+      return action.cart
 
     default:
       return state

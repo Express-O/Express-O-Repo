@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-import { addCart, fetchCart, removeProduct } from '../store/index';
+import { Link, withRouter } from 'react-router-dom'
+import { addCart, fetchCart, removeProduct, emptyCart } from '../store/index';
 import ProductCard from './ProductCard'
 
 class Cart extends Component {
+  constructor() {
+    super()
+  }
 
   componentDidMount() {
     this.props.fetchCart()
@@ -12,6 +15,7 @@ class Cart extends Component {
 
   render() {
     const { cart } = this.props;
+    
     return (
       <div>
         <h1>Shopping Cart</h1>
@@ -32,11 +36,12 @@ class Cart extends Component {
               />
               )
             })
-            }
+          }
+          <button type='button' onClick={() => this.props.emptyCart()}>Empty your cart</button>
           </ul>
           <span className="badge">{cart.length}</span>
           </div>
-        : <p>No Items in Cart!</p>
+        : <p>Your shopping cart is empty!</p>
         }
       </div>
     )
@@ -53,7 +58,8 @@ const mapDispatch = dispatch => {
   return {
     addCart: (product) => dispatch(addCart(product)),
     fetchCart: () => dispatch(fetchCart()),
-    removeProduct: (productId) => dispatch(removeProduct(productId))
+    removeProduct: (productId) => dispatch(removeProduct(productId)),
+    emptyCart: () => dispatch(emptyCart())
   }
 }
 

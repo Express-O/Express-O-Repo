@@ -1,8 +1,12 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom'
+import Cart from './Cart'
+
 
 const ProductCard = props => {
-  const { product, removeProduct } = props
+  const { product, removeProduct, handleChange } = props
+
+  console.log('Product Card Props', props)
 
   return (
     <div>
@@ -13,8 +17,8 @@ const ProductCard = props => {
 
       <p>{product.description}</p>
       <label>Quantity</label>
-      <input type="number" min="1" max="5" name="rating" />  
-      {/* value={} onChange={}  */}
+      <input type="number" defaultValue="1" min="1" max="5" name="quantity" onChange={props.handleChange} />  
+      <button type='button'>Update</button>
 
       <label>Price</label>
       <p>{product.price}</p>
