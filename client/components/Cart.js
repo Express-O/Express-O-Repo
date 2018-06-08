@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { addCart, fetchCart, removeProduct } from '../store/index';
 import ProductCard from './ProductCard'
 
@@ -16,13 +16,28 @@ class Cart extends Component {
       <div>
         <h1>Shopping Cart</h1>
         {
-          cart[0] ? null : <p>No Items in Cart!</p>
+          cart[0] 
+          ? 
+          <div>
+          <ul>
+            {
+            cart.map(product => {
+              console.log("JENNY LOOK HERE===============================>", cart)
+              return (
+              <ProductCard
+                key={product.id}
+                product={product}
+                removeProduct={this.props.removeProduct}
+                cartProductCount={cart.length}
+              />
+              )
+            })
+            }
+          </ul>
+          <span className="badge">{cart.length}</span>
+          </div>
+        : <p>No Items in Cart!</p>
         }
-        <ul>
-          {
-            cart.map(product => (<ProductCard key={product.id} product={product} removeProduct={this.props.removeProduct} cartProductCount={cart.length} />))
-          }
-        </ul>
       </div>
     )
   }
@@ -42,4 +57,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Cart);
+export default withRouter(connect(mapState, mapDispatch)(Cart));
