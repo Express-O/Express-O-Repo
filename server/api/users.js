@@ -12,4 +12,16 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.userId)
+
+    if (!user) {
+      return res.sendStatus(404)
+    }
+
+    res.json(user)
+  } catch (error) { next(error) }
+})
+
 module.exports = router

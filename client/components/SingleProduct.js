@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-import { fetchSingleProduct, fetchAllReviews } from '../store/index';
+import { fetchSingleProduct, fetchAllReviews, addCart } from '../store/index';
+
+
 
  class SingleProduct extends Component {
     componentDidMount() {
@@ -11,7 +13,7 @@ import { fetchSingleProduct, fetchAllReviews } from '../store/index';
     }
 
     render() {
-        const { product, selectedProduct, singleProductReviews } = this.props;
+        const { product, selectedProduct, singleProductReviews, userId } = this.props;
         const selected = selectedProduct || {};
         const loading = <h1>Loading...</h1>
         const content = (
@@ -21,7 +23,8 @@ import { fetchSingleProduct, fetchAllReviews } from '../store/index';
                 <img src={product.photo} />
                 <p>Details: {product.description}</p>
                 <p>Price: ${product.price}</p>
-                <button type="button">ADD TO CART</button>
+                <button type="button" onClick={() => this.props.addCart(product)}>ADD TO CART</button>
+
                 <Link to={`/products/edit/${product.id}`}>
                    <button type="button">EDIT PRODUCT</button>
                 </Link>
@@ -42,13 +45,15 @@ import { fetchSingleProduct, fetchAllReviews } from '../store/index';
                                         <p>Rating: {review.rating}</p>
                                         <p>{review.body}</p>
                                         <hr />
-                                    {/* <button className='remove' onClick={() => {deletingCountry(country.id)}}>Remove</button> */}
                                 </div>
                             )
                         })
                     }
                     </ul>
                 </div>
+                <Link to={`/products/${selectedProduct}/${userId}/review`}>
+                    <button type="button">WRITE A REVIEW</button>
+                </Link>
             </div>
         )
 
@@ -62,20 +67,30 @@ import { fetchSingleProduct, fetchAllReviews } from '../store/index';
     }
 }
 
+const authDummyUser =
+{
+    id: 1,
+    firstName: 'Jenny',
+    email: 'jenny@email.com'
+};
+
 const mapState = (state, ownProps) => {
     const productId = +ownProps.match.params.productId;
+    const userId = authDummyUser.id
     return {
         product: state.product,
         selectedProduct: productId,
-        singleProductReviews: state.singleProductReviews
+        singleProductReviews: state.singleProductReviews,
+        userId
     }
 }
 
 const mapDispatch = (dispatch) => {
-    return {
-        fetchSingleProduct: (productId) => dispatch(fetchSingleProduct(productId)),
-        fetchAllReviews: (productId) => dispatch(fetchAllReviews(productId))
-    }
+  return {
+    fetchSingleProduct: (productId) => dispatch(fetchSingleProduct(productId)),
+    fetchAllReviews: (productId) => dispatch(fetchAllReviews(productId)),
+    addCart: (product) => dispatch(addCart(product))
+  }
 }
 
 export default withRouter(connect(mapState, mapDispatch)(SingleProduct))
