@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-import { addCart, fetchCart } from '../store/index';
-
+import { addCart, fetchCart, removeProduct } from '../store/index';
+import ProductCard from './ProductCard'
 
 class Cart extends Component {
 
@@ -20,7 +20,7 @@ class Cart extends Component {
         }
         <ul>
           {
-            cart.map(product => <li key={product.id}>{product.title}</li>)  // this needs to be a product component
+            cart.map(product => (<ProductCard key={product.id} product={product} removeProduct={this.props.removeProduct} cartProductCount={cart.length} />))
           }
         </ul>
       </div>
@@ -37,7 +37,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     addCart: (product) => dispatch(addCart(product)),
-    fetchCart: () => dispatch(fetchCart())
+    fetchCart: () => dispatch(fetchCart()),
+    removeProduct: (productId) => dispatch(removeProduct(productId))
   }
 }
 

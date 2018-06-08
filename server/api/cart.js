@@ -1,5 +1,6 @@
 const router = require('express').Router()
 
+// api/cart
 router.get('/', (req, res, next) => {
   try {
     const cart = req.session.cart
@@ -24,24 +25,38 @@ router.get('/', (req, res, next) => {
 //   } catch (error) { next(error) }
 // })
 
+// api/cart
 // PUT update cart with product
 router.put('/', (req, res, next) => {
+  try {
     const product = req.body
     const cart = req.session.cart
     const updatedCart = cart.push(product)
     res.status(200).json(updatedCart)
+  } catch (err) {
+    next(err)
+  }
 })
 
-// DELETE a product
-// router.delete('/:productId', async(req, res, next) => {
-//   try {
-//     await Product.destroy({
-//       where: {
-//         id: req.params.productId
-//       }
-//     })
-//     res.sendStatus(200)
-//   } catch (error) { next(error) }
-// })
+// api/cart/productId
+// DELETE (Remove) product from cart
+router.delete('/:productId', (req, res, next) => {
+  try {
+    const productToRemoveId = +req.params.productId
+    console.log(productToRemoveId)
+    const cartCopy = req.session.cart.slice()
+    const filteredCart = cartCopy.filter(product => {
+      console.log(product.id, productToRemoveId)
+      return product.id !== productToRemoveId
+    })
+
+    console.log('productToRemoveId', req.params.productId)
+    console.log('equal', cartCopy.length == filteredCart.length)
+    console.log('Filtered Cart=====', filteredCart)
+
+    req.session.cart = filteredCart
+    res.status(200).json(filteredCart)
+  } catch (error) { next(error) }
+})
 
 module.exports = router
