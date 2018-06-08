@@ -13,7 +13,7 @@ import { fetchSingleProduct, fetchAllReviews, addCart } from '../store/index';
     }
 
     render() {
-        const { product, selectedProduct, singleProductReviews, userId } = this.props;
+        const { product, selectedProduct, singleProductReviews, userId, isLoggedIn } = this.props;
         const selected = selectedProduct || {};
         const loading = <h1>Loading...</h1>
         const content = (
@@ -51,9 +51,15 @@ import { fetchSingleProduct, fetchAllReviews, addCart } from '../store/index';
                     }
                     </ul>
                 </div>
-                <Link to={`/products/${selectedProduct}/${userId}/review`}>
-                    <button type="button">WRITE A REVIEW</button>
-                </Link>
+                {
+                  isLoggedIn ?
+                  <Link to={`/products/${selectedProduct}/${userId}/review`}>
+                      <button type="button">WRITE A REVIEW</button>
+                  </Link> :
+                  <Link to = "/login">
+                    <button type="button">LOGIN TO WRITE A REVIEW</button>
+                  </Link>
+                }
             </div>
         )
 
@@ -81,7 +87,8 @@ const mapState = (state, ownProps) => {
         product: state.product,
         selectedProduct: productId,
         singleProductReviews: state.singleProductReviews,
-        userId
+        userId,
+        isLoggedIn: !!state.user.id
     }
 }
 
