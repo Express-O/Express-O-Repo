@@ -27,10 +27,10 @@ export const me = () =>
       .then(res =>
         dispatch(getUser(res.data || defaultUser)))
       .catch(err => console.log(err))
-
-export const auth = (email, password, method) =>
+      
+export const auth = (userInfo) =>
   dispatch =>
-    axios.post(`/auth/${method}`, { email, password })
+    axios.post(`/auth/${userInfo.formName}`, userInfo)
       .then(res => {
         dispatch(getUser(res.data))
         history.push('/product/all')
