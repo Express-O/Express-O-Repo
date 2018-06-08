@@ -24,7 +24,7 @@ export const fetchSingleProduct = (productId) => {
 //Initial State
 const defaultProduct = {}
 
- //REDUCER
+//REDUCER
 export default function (state = defaultProduct, action) {
  switch (action.type) {
     case GET_SINGLE_PRODUCT:

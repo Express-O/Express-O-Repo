@@ -20,8 +20,11 @@ export const UserHome = (props) => {
           Address:{streetName} {apt} {city} {state} {zip} {country}
         </div>
       </div>
-      <Link to
-      <button type="button">EDIT DETAILS</button>
+      <div>
+        <Link to = "/editprofile">
+          <button type="button">EDIT PROFILE</button>
+        </Link>
+      </div>
       <div>
         <h4>Past Purchases:</h4>
         {/* component with line item goes here? */}
