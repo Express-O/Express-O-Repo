@@ -6,11 +6,24 @@ import {connect} from 'react-redux'
  * COMPONENT
  */
 export const UserHome = (props) => {
-  const {email} = props
+  const {email, firstName, lastName, streetName, apt, city, state, zip, country} = props
 
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      <h3>Welcome, {firstName} {lastName}</h3>
+      <h4> Account Details:</h4>
+      <div>
+        <p>Full Name: {firstName} {lastName}</p>
+        <p>Email: {email}</p>
+        <div>
+          Address:{streetName} {apt} {city} {state} {zip} {country}
+        </div>
+      </div>
+      <button type="button">EDIT DETAILS</button>
+      <div>
+        <h4>Past Purchases:</h4>
+        {/* component with line item goes here? */}
+      </div>
     </div>
   )
 }
@@ -20,7 +33,15 @@ export const UserHome = (props) => {
  */
 const mapState = (state) => {
   return {
-    email: state.user.email
+    firstName: state.user.firstName,
+    lastName: state.user.lastName,
+    email: state.user.email,
+    streetName: state.user.streetName,
+    apt: state.user.apt,
+    city: state.user.city,
+    state: state.user.state,
+    zip: state.user.zip,
+    country: state.user.country
   }
 }
 
