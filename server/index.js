@@ -53,7 +53,7 @@ const createApp = () => {
   app.use(passport.initialize())
   app.use(passport.session())
 
-// Add cart to session
+  // Add cart to session
   app.use((req, res, next) => {
     if (!req.session.cart) req.session.cart = []
     next()
