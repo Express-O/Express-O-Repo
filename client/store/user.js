@@ -27,7 +27,7 @@ export const me = () =>
       .then(res =>
         dispatch(getUser(res.data || defaultUser)))
       .catch(err => console.log(err))
-      
+
 export const auth = (userInfo) =>
   dispatch =>
     axios.post(`/auth/${userInfo.formName}`, userInfo)
@@ -39,6 +39,30 @@ export const auth = (userInfo) =>
       })
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
+export const editProfile = (userInfo) => {
+  console.log('USER INFO ===============>', userInfo)
+  return async (dispatch) =>{
+    try {
+      const {data} = await axios.put(`/auth/${userInfo.formName}`, userInfo)
+      dispatch(data)
+      history.push('/home')
+      // (authError) => dispatch(getUser({ error: authError }))
+    }
+    catch (error){console.log(error)}
+  }
+}
+
+// export const editProfile = (userInfo) =>
+//   dispatch =>
+//     axios.put(`/auth/${userInfo.formName}`, userInfo)
+//       .then(res => {
+//         dispatch(getUser(res.data))
+//         history.push('/home')
+//       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
+//         dispatch(getUser({ error: authError }))
+//       })
+//       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
+
 export const logout = () =>
   dispatch =>
     axios.post('/auth/logout')
@@ -47,6 +71,7 @@ export const logout = () =>
         history.push('/login')
       })
       .catch(err => console.log(err))
+
 
 /**
  * REDUCER
