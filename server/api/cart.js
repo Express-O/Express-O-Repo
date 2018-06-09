@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Product, Order, LineItem} = require('../db/models')
+const { Product, Order, LineItem } = require('../db/models')
 
 // api/cart
 router.get('/', (req, res, next) => {
@@ -12,21 +12,18 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/submit', async (req, res, next) => {
-  console.log("REQ BODY ==========>", req.body)
+  if (!req.user) { res.json("You must be logged in to submit an order") }
   try {
-      const order = await Order.create()
-      const product =  order.addProduct(req.body.productId)
-      const item = await LineItem.create(req.body, {
-        where: {
-          productId: product.id
-        }
-      })
-      //const lineItem = order.addProduct(req.body.productId)
-      res.json("success!")
+    const order = await Order.create()
+    req.body.orderId = order.id
+    //if there's an array of items from the cart we need to map over and do this.
+    const item = await LineItem.create(req.body)
+    res.json("success!")
   } catch (err) {
     next(err)
   }
 })
+
 // api/cart
 // PUT update cart with product
 router.put('/', (req, res, next) => {
