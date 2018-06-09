@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const EDIT_USER = 'EDIT_USER'
 
 /**
  * INITIAL STATE
@@ -17,6 +18,7 @@ const defaultUser = {}
  */
 const getUser = user => ({ type: GET_USER, user })
 const removeUser = () => ({ type: REMOVE_USER })
+const editUser = user => ({type: EDIT_USER, user})
 
 /**
  * THUNK CREATORS
@@ -45,7 +47,7 @@ export const editProfile = (userInfo) => {
       console.log('USER INFO ========>', userInfo)
       const updated = await axios.patch(`/auth/editProfile`, userInfo)
       console.log('DATA IN THUNK EDIT PROFILE', updated.config.data)
-      dispatch(getUser(updated.config.data))
+      dispatch(editUser(updated.config.data))
       history.push('/home')
       // (authError) => dispatch(getUser({ error: authError }))
     }
@@ -83,6 +85,8 @@ export default function (state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+    case EDIT_USER:
+      return {...state, user: action.user}
     default:
       return state
   }
