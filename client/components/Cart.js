@@ -4,8 +4,22 @@ import { Link, withRouter } from 'react-router-dom'
 import { addCart, fetchCart, removeProduct, emptyCart } from '../store/index';
 import ProductCard from './ProductCard'
 
+const cartListStyles = {
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+  justifyContent: "center",
+}
+
+const cartCardStyles = {
+  maxWidth: "30%",
+  minWidth: "150px",
+  flex: "1",
+  margin: "5px",
+}
+
 class Cart extends Component {
-  constructor() {
+  constructor() { 
     super()
   }
 
@@ -17,15 +31,15 @@ class Cart extends Component {
     const { cart } = this.props;
     
     let cartWithQty = cart.reduce((cartHashTbl, product) => {
-      // console.log('product from hashtbl', product)
+      console.log('product from hashtbl', product)
       let title = product.title
       if (!cartHashTbl[title]) {
         product.quantity = 1
         cartHashTbl[title]= product
-        // console.log('inside if block')
-        // console.log('cartHashTbl', cartHashTbl)
+        console.log('inside if block')
+        console.log('cartHashTbl', cartHashTbl)
       } else {
-        // console.log('made it to else block - cartHashTbl', cartHashTbl)
+        console.log('made it to else block - cartHashTbl', cartHashTbl)
         cartHashTbl[title].quantity++
       }
       return cartHashTbl
@@ -41,6 +55,7 @@ class Cart extends Component {
           console.log('product', product)
           cartWithQtyArr.push(product)
         }
+        console.log('cartWithQtyArr', cartWithQtyArr)
         return cartWithQtyArr
       }
       let cartWithQtyArr = helperFunc(cartWithQty)
@@ -51,18 +66,16 @@ class Cart extends Component {
 
     return (
       <div>
-        <h1>Shopping Cart</h1>
+        <h2 style={{marginBottom: "0.5em", marginTop: "0.5em"}}>Shopping Cart</h2>
         {
-          cart[0] 
-          ? 
-          <div>
-          <ul>
+          cartWithQtyArr.length
+          ?
+          <div style={cartListStyles}>
             {
-            cartWithQtyArr.map(product => {
-              // console.log("JENNY LOOK HERE===============================>", cart)
+          cartWithQtyArr.map(product => {
               let cartId = Math.random()
               return (
-              <ProductCard
+              <ProductCard style={cartCardStyles}
                 key={cartId}
                 product={product}
                 removeProduct={this.props.removeProduct}
@@ -71,11 +84,8 @@ class Cart extends Component {
               />
               )
             })
-
-
           }
           <button type='button' onClick={() => this.props.emptyCart()}>Empty your cart</button>
-          </ul>
           {/* <span className="badge">{cart.length}</span> */}
           </div>
         : <p>Your shopping cart is empty!</p>
