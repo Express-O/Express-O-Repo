@@ -49,6 +49,7 @@ class AuthForm extends Component {
         state: evt.target.state.value,
         zip: evt.target.zip.value,
         country: evt.target.country.value,
+        email: evt.target.email.value,
         id: this.props.id
       }
       this.props.editProfile(userInfo)
