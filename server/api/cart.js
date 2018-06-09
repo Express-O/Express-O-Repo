@@ -27,7 +27,6 @@ router.put('/', (req, res, next) => {
 router.put('/newCart', (req, res, next) => {
   try {
     const newCart = req.body
-    
     let oldCart = req.session.cart
     oldCart = newCart
     const updatedCart = oldCart;

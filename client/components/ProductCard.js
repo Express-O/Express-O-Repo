@@ -30,24 +30,20 @@ class ProductCard extends Component {
     console.log('Product title====>', productTitle)
     cartWithQty[productTitle].quantity = this.state.productQty;
     let newCart = helperFunc(cartWithQty);
-    console.log("NEW CART=====>", newCart)
-    // const filterProduct = newCart.filter(product => {
-      //   return product.title === productTitle;
-      // })
-      
-      //console.log('UPDATED QUANTITY',  newCart[productTitle].quantity)
-      this.props.updateCart(newCart);  //?????
+      console.log("NEW CART=====>", newCart)
+      console.log("This is the product title in ProductCart", productTitle)
+      console.log('UPDATED QUANTITY',  cartWithQty[productTitle].quantity)
+    this.props.updateCart(newCart);  //?????
 
     this.setState({
-      productQty: newCart[productTitle].quantity
+      productQty:  cartWithQty[productTitle].quantity
     })
+    console.log('Local State product qty', this.state.productQty)
   }
 
   render () {
     const { product, removeProduct } = this.props
     
-    console.log('Local State product qty', this.state.productQty)
-  
     return (
       <div>
         <NavLink
@@ -63,7 +59,7 @@ class ProductCard extends Component {
 
         <label>Price</label>
         <p>{product.price}</p>
-        <button type='button' onClick={() => removeProduct(product.id)}>Remove Item</button>
+        <button type="button" onClick={() => removeProduct(product.id)}>Remove Item</button>
       </div>
     )
   }
