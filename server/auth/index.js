@@ -32,17 +32,18 @@ router.post('/signup', (req, res, next) => {
     })
 })
 
-router.put('/editProfile', async (req, res, next) => {
-  console.log('REQ.BODY EDIT PROFILE', req.body)
+router.patch('/editProfile', async (req, res, next) => {
+  console.log('hiting the route')
   try {
     const [numberOfAffectedRows, affectedRows] = await User.update(req.body, {
-      where: {id: req.body.id},
+      where: { id: req.body.id },
       returning: true,
       plain: true
     })
+    console.log('AFFECTED ROWS', affectedRows)
     res.json(affectedRows)
   }
-  catch (error){ next(error) }
+  catch (error) { next(error) }
 })
 
 router.post('/logout', (req, res) => {

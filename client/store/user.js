@@ -40,15 +40,16 @@ export const auth = (userInfo) =>
       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
 export const editProfile = (userInfo) => {
-  console.log('USER INFO ===============>', userInfo)
-  return async (dispatch) =>{
+  return async (dispatch) => {
     try {
-      const {data} = await axios.put(`/auth/${userInfo.formName}`, userInfo)
-      dispatch(data)
+      console.log('USER INFO ========>', userInfo)
+      const updated = await axios.patch(`/auth/editProfile`, userInfo)
+      console.log('DATA IN THUNK EDIT PROFILE', updated.config.data)
+      dispatch(getUser(updated.config.data))
       history.push('/home')
       // (authError) => dispatch(getUser({ error: authError }))
     }
-    catch (error){console.log(error)}
+    catch (error) { console.log(error) }
   }
 }
 

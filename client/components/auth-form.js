@@ -10,7 +10,6 @@ class AuthForm extends Component {
   constructor(props) {
     super(props)
     if (this.props.user) {
-      console.log('PROPS IN CONSTRUCTOR', this.props)
       this.state = this.props.user
     } else {
       this.state = {}
@@ -25,7 +24,7 @@ class AuthForm extends Component {
       email: evt.target.email.value,
       password: evt.target.password.value
     }
-    if (userInfo.formName === 'signup' || userInfo.formName === 'editProfile') {
+    if (userInfo.formName === 'signup') {
       userInfo = {
         formName: evt.target.name,
         firstName: evt.target.firstName.value,
@@ -41,7 +40,17 @@ class AuthForm extends Component {
       }
     }
     if (userInfo.formName === 'editProfile') {
-      userInfo.id = this.props.id
+      userInfo = {
+        firstName: evt.target.firstName.value,
+        lastName: evt.target.lastName.value,
+        streetName: evt.target.streetName.value,
+        apt: evt.target.apt.value,
+        city: evt.target.city.value,
+        state: evt.target.state.value,
+        zip: evt.target.zip.value,
+        country: evt.target.country.value,
+        id: this.props.id
+      }
       this.props.editProfile(userInfo)
     }
     else { this.props.auth(userInfo) }
