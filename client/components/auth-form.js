@@ -1,14 +1,20 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import {auth, editProfile} from '../store'
+import { auth, editProfile } from '../store'
 
 /**
  * COMPONENT
  */
-class AuthForm extends Component{
-  constructor(){
-    super()
+class AuthForm extends Component {
+  constructor(props) {
+    super(props)
+    if (this.props.user) {
+      console.log('PROPS IN CONSTRUCTOR', this.props)
+      this.state = this.props.user
+    } else {
+      this.state = {}
+    }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -19,7 +25,7 @@ class AuthForm extends Component{
       email: evt.target.email.value,
       password: evt.target.password.value
     }
-    if (userInfo.formName === 'signup' || userInfo.formName === 'editProfile' ) {
+    if (userInfo.formName === 'signup' || userInfo.formName === 'editProfile') {
       userInfo = {
         formName: evt.target.name,
         firstName: evt.target.firstName.value,
@@ -34,43 +40,43 @@ class AuthForm extends Component{
         password: evt.target.password.value
       }
     }
-    if (userInfo.formName === 'editProfile'){
+    if (userInfo.formName === 'editProfile') {
       userInfo.id = this.props.id
       this.props.editProfile(userInfo)
     }
-    else {this.props.auth(userInfo)}
+    else { this.props.auth(userInfo) }
   }
 
-  render(){
-    const {name, displayName, error} = this.props
-
+  render() {
+    const { name, displayName, error } = this.props
+    console.log('STATE IN AUTH_FORM', this.state)
     return (
       <div>
         <form onSubmit={this.handleSubmit} name={name}>
           <div>
             {
               name === 'signup' || name === 'editProfile' ?
-              <div>
-              <label htmlFor="firstName"><small>First Name:</small></label>
-              <input name="firstName" type="text" />
-              <label htmlFor="lastName"><small>Last Name:</small></label>
-              <input name="lastName" type="text" />
-              <label htmlFor="streetName"><small>Street Adress:</small></label>
-              <input name="streetName" type="text" />
-              <label htmlFor="apt"><small>Apt:</small></label>
-              <input name="apt" type="text" />
-              <label htmlFor="city"><small>City:</small></label>
-              <input name="city" type="text" />
-              <label htmlFor="state"><small>State:</small></label>
-              <input name="state" type="text" />
-              <label htmlFor="zip"><small>Zip:</small></label>
-              <input name="zip" type="text" />
-              <label htmlFor="country"><small>Country:</small></label>
-              <input name="country" type="text" />
-              </div> : null
+                <div>
+                  <label htmlFor="firstName" ><small>First Name:</small></label>
+                  <input name="firstName" type="text" defaultValue={this.state.firstName} />
+                  <label htmlFor="lastName"><small>Last Name:</small></label>
+                  <input name="lastName" type="text" defaultValue={this.state.lastName} />
+                  <label htmlFor="streetName"><small>Street Adress:</small></label>
+                  <input name="streetName" type="text" defaultValue={this.state.streetName} />
+                  <label htmlFor="apt"><small>Apt:</small></label>
+                  <input name="apt" type="text" defaultValue={this.state.apt} />
+                  <label htmlFor="city"><small>City:</small></label>
+                  <input name="city" type="text" defaultValue={this.state.city} />
+                  <label htmlFor="state"><small>State:</small></label>
+                  <input name="state" type="text" defaultValue={this.state.state} />
+                  <label htmlFor="zip"><small>Zip:</small></label>
+                  <input name="zip" type="text" defaultValue={this.state.zip} />
+                  <label htmlFor="country"><small>Country:</small></label>
+                  <input name="country" type="text" defaultValue={this.state.country} />
+                </div> : null
             }
             <label htmlFor="email"><small>Email</small></label>
-            <input name="email" type="text" />
+            <input name="email" type="text" defaultValue={this.state.email} />
           </div>
           <div>
             <label htmlFor="password"><small>Password</small></label>
@@ -114,7 +120,8 @@ const mapEditProfile = state => {
     name: 'editProfile',
     displayName: 'Edit Profile',
     error: state.user.error,
-    id: state.user.id
+    id: state.user.id,
+    user: state.user
   }
 }
 
