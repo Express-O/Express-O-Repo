@@ -42,8 +42,6 @@ export const postProduct = (product) => {
 }
 
 export const editProduct = (product) => {
-  console.log('Edit Product action triggered ================')
-  console.log('product to update with', product)
   return async (dispatch) => {
     const res = await axios.put(`/api/products/${product.id}`, product);
     const data = res.data;

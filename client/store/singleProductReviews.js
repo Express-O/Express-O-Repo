@@ -23,7 +23,6 @@ export const fetchAllReviews = (productId) => {
 }
 
 export const postReview = (productId, userId, review) => {
-    console.log('WE ARE IN THE STORE LOOOOooooooooOOOK:', review )
     return async (dispatch, getState, {axios}) => {
       const res = await axios.post(`/api/products/${productId}/${userId}/review`, review);
       const data = res.data;
