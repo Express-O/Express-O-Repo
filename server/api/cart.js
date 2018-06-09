@@ -22,6 +22,7 @@ router.post('/submit', async (req, res, next) => {
   } catch (err) {
     next(err)
   }
+  //for decrementing the inventory, create a method on the model and then call it with number of items to decrements, should be a failsafe in the method to prevent negative numbers in inventory
 })
 
 // api/cart
