@@ -23,6 +23,21 @@ router.put('/', (req, res, next) => {
   }
 })
 
+//PUT: update old cart with newCart from frontend
+router.put('/newCart', (req, res, next) => {
+  try {
+    const newCart = req.body
+    
+    let oldCart = req.session.cart
+    oldCart = newCart
+    const updatedCart = oldCart;
+    console.log("updated Cart in the backend api route =====> ", updatedCart)
+    res.status(200).send(updatedCart)
+  } catch (err) {
+    next(err)
+  }
+})
+
 // api/cart
 // Empty Cart
 router.delete('/', (req, res, next) => {

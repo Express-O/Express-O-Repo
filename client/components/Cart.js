@@ -31,21 +31,21 @@ class Cart extends Component {
     const { cart } = this.props;
     
     let cartWithQty = cart.reduce((cartHashTbl, product) => {
-      console.log('product from hashtbl', product)
+      // console.log('product from hashtbl', product)
       let title = product.title
       if (!cartHashTbl[title]) {
         product.quantity = 1
         cartHashTbl[title]= product
-        console.log('inside if block')
-        console.log('cartHashTbl', cartHashTbl)
+        // console.log('inside if block')
       } else {
-        console.log('made it to else block - cartHashTbl', cartHashTbl)
+        // console.log('made it to else block - cartHashTbl', cartHashTbl)
         cartHashTbl[title].quantity++
       }
+      console.log('cartHashTbl', cartHashTbl)
       return cartHashTbl
     }, {})
 
-      console.log('CART W QTY', cartWithQty)
+      // console.log('CART W QTY', cartWithQty)
 
 
       let helperFunc = (obj) => {
@@ -55,7 +55,7 @@ class Cart extends Component {
           console.log('product', product)
           cartWithQtyArr.push(product)
         }
-        console.log('cartWithQtyArr', cartWithQtyArr)
+        // console.log('cartWithQtyArr', cartWithQtyArr)
         return cartWithQtyArr
       }
       let cartWithQtyArr = helperFunc(cartWithQty)
@@ -78,6 +78,8 @@ class Cart extends Component {
               <ProductCard style={cartCardStyles}
                 key={cartId}
                 product={product}
+                cartWithQty={cartWithQty}
+                helperFunc={helperFunc}
                 removeProduct={this.props.removeProduct}
                 cartProductCount={cart.length}
                 quantity={product.quantity}
