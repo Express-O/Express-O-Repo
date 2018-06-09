@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const {Product, Order, LineItem} = require('../db/models')
 
 // api/cart
 router.get('/', (req, res, next) => {
@@ -10,6 +11,22 @@ router.get('/', (req, res, next) => {
   }
 })
 
+router.post('/submit', async (req, res, next) => {
+  console.log("REQ BODY ==========>", req.body)
+  try {
+      const order = await Order.create()
+      const product =  order.addProduct(req.body.productId)
+      const item = await LineItem.create(req.body, {
+        where: {
+          productId: product.id
+        }
+      })
+      //const lineItem = order.addProduct(req.body.productId)
+      res.json("success!")
+  } catch (err) {
+    next(err)
+  }
+})
 // api/cart
 // PUT update cart with product
 router.put('/', (req, res, next) => {
@@ -58,7 +75,7 @@ router.delete('/:productId', (req, res, next) => {
     const filteredCart = cartCopy.filter(product => {
       return product.id !== productToRemoveId
     })
-    
+
     req.session.cart = filteredCart
     res.status(200).json(filteredCart)
   } catch (error) { next(error) }
