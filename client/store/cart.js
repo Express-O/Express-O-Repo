@@ -5,7 +5,7 @@ const GET_CART = 'GET_CART'
 const SET_CART = 'SET_CART'
 const REMOVED_PRODUCT = 'REMOVED_PRODUCT'
 const SET_EMPTY_CART = 'SET_EMPTY_CART'
-// const SET_UPDATED_CART = 'SET_UPDATED_CART'
+const SET_UPDATED_CART = 'SET_UPDATED_CART'
 
 
 //Action creator
@@ -30,8 +30,21 @@ const setEmptyCart = cart => ({
   cart
 })
 
+const setUpdatedCart = updatedCart => ({
+  type: SET_UPDATED_CART,
+  updatedCart
+})
 
 //Thunk Creator
+export const updateCart = (newCart) => {
+  return async (dispatch) => {
+    const res = await axios.put('/api/cart/newCart', newCart);
+    console.log("THis is the data from thunk", data) // old data
+    const data = res.data;
+    dispatch(setUpdatedCart(data));
+  }
+}
+
 export const fetchCart = () => {
   return async (dispatch) => {
     const res = await axios.get(`/api/cart`);
@@ -87,8 +100,10 @@ export default function (state = defaultCart, action) {
       return filtered
 
     case SET_EMPTY_CART:
-      console.log('SET EMPTY CART triggered ===========')
       return action.cart
+
+    case SET_UPDATED_CART:
+       return action.updatedCart
 
     default:
       return state
