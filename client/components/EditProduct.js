@@ -26,7 +26,6 @@ class EditProduct extends Component {
 
 
   render () {
-console.log("STATE", this.state)
     return (
       <div>
         <h1>Edit Product Form</h1>
