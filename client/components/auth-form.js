@@ -10,7 +10,6 @@ class AuthForm extends Component {
   constructor(props) {
     super(props)
     if (this.props.user) {
-      console.log('PROPS IN CONSTRUCTOR', this.props)
       this.state = this.props.user
     } else {
       this.state = {}
@@ -23,9 +22,15 @@ class AuthForm extends Component {
     let userInfo = {
       formName: evt.target.name,
       email: evt.target.email.value,
-      password: evt.target.password.value
     }
-    if (userInfo.formName === 'signup' || userInfo.formName === 'editProfile') {
+    if (userInfo.formName === 'login') {
+      userInfo = {
+        formName: evt.target.name,
+        email: evt.target.email.value,
+        password: evt.target.password.value
+      }
+    }
+    if (userInfo.formName === 'signup') {
       userInfo = {
         formName: evt.target.name,
         firstName: evt.target.firstName.value,
@@ -41,7 +46,18 @@ class AuthForm extends Component {
       }
     }
     if (userInfo.formName === 'editProfile') {
-      userInfo.id = this.props.id
+      userInfo = {
+        firstName: evt.target.firstName.value,
+        lastName: evt.target.lastName.value,
+        streetName: evt.target.streetName.value,
+        apt: evt.target.apt.value,
+        city: evt.target.city.value,
+        state: evt.target.state.value,
+        zip: evt.target.zip.value,
+        country: evt.target.country.value,
+        email: evt.target.email.value,
+        id: this.props.id
+      }
       this.props.editProfile(userInfo)
     }
     else { this.props.auth(userInfo) }
@@ -49,7 +65,6 @@ class AuthForm extends Component {
 
   render() {
     const { name, displayName, error } = this.props
-    console.log('STATE IN AUTH_FORM', this.state)
     return (
       <div>
         <form onSubmit={this.handleSubmit} name={name}>
@@ -78,10 +93,13 @@ class AuthForm extends Component {
             <label htmlFor="email"><small>Email</small></label>
             <input name="email" type="text" defaultValue={this.state.email} />
           </div>
-          <div>
-            <label htmlFor="password"><small>Password</small></label>
-            <input name="password" type="password" />
-          </div>
+          {
+            name !== 'editProfile' &&
+            <div>
+              <label htmlFor="password"><small>Password</small></label>
+              <input name="password" type="password" />
+            </div>
+          }
           <div>
             <button type="submit">{displayName}</button>
           </div>
