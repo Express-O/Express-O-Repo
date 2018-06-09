@@ -69,9 +69,6 @@ class EditProduct extends Component {
 
 const mapState = (state, ownProps) => {
   const productId = +ownProps.match.params.productId
-  console.log('productId', productId)
-  console.log('Edit Product STATE=====', state)
-
   return {
     product: state.allProducts.find(product => productId === product.id)
   }

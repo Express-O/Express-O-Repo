@@ -44,9 +44,7 @@ export const auth = (userInfo) =>
 export const editProfile = (userInfo) => {
   return async (dispatch) => {
     try {
-      console.log('USER INFO ========>', userInfo)
       const updated = await axios.patch(`/auth/editProfile`, userInfo)
-      console.log('DATA IN THUNK EDIT PROFILE', updated.config.data)
       dispatch(editUser(updated.config.data))
       history.push('/home')
       // (authError) => dispatch(getUser({ error: authError }))
