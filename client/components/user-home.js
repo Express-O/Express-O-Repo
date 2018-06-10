@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { deleteAcct } from '../store'
 
 /**
  * COMPONENT
  */
 export const UserHome = (props) => {
-  const {email, firstName, lastName, streetName, apt, city, state, zip, country} = props
+  const { email, firstName, lastName, streetName, apt, city, state, zip, country } = props
 
   return (
     <div>
@@ -21,9 +22,12 @@ export const UserHome = (props) => {
         </div>
       </div>
       <div>
-        <Link to = "/editprofile">
+        <Link to="/editprofile">
           <button type="button">EDIT PROFILE</button>
         </Link>
+      </div>
+      <div>
+        <button type="button" onClick={() => deleteAcct(props.id)}>DELETE ACCOUNT</button>
       </div>
       <div>
         <h4>Past Purchases:</h4>
@@ -46,11 +50,18 @@ const mapState = (state) => {
     city: state.user.city,
     state: state.user.state,
     zip: state.user.zip,
-    country: state.user.country
+    country: state.user.country,
+    id: state.user.id
   }
 }
 
-export default connect(mapState)(UserHome)
+const mapDispatch = (dispatch) => {
+  return {
+    deleteAcct: (id) => dispatch(deleteAcct(id))
+  }
+}
+
+export default connect(mapState, mapDispatch)(UserHome)
 
 /**
  * PROP TYPES

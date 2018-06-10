@@ -18,7 +18,7 @@ const defaultUser = {}
  */
 const getUser = user => ({ type: GET_USER, user })
 const removeUser = () => ({ type: REMOVE_USER })
-const editUser = user => ({type: EDIT_USER, user})
+const editUser = user => ({ type: EDIT_USER, user })
 
 /**
  * THUNK CREATORS
@@ -52,7 +52,13 @@ export const editProfile = (userInfo) => {
     catch (error) { console.log(error) }
   }
 }
-
+export const deleteAcct = (id) => {
+  return async (dispatch) => {
+    await axios.delete('/auth/', id)
+    dispatch(removeUser())
+    history.push('/product/all')
+  }
+}
 // export const editProfile = (userInfo) =>
 //   dispatch =>
 //     axios.put(`/auth/${userInfo.formName}`, userInfo)
@@ -84,7 +90,7 @@ export default function (state = defaultUser, action) {
     case REMOVE_USER:
       return defaultUser
     case EDIT_USER:
-      return {...state, user: action.user}
+      return { ...state, user: action.user }
     default:
       return state
   }
