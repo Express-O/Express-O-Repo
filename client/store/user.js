@@ -54,10 +54,7 @@ export const editProfile = (userInfo) => {
 }
 
 export const deleteAcct = (id) => {
-  console.log('Heerrree!!!')
-  console.log('DATA====>', id)
   return async (dispatch) => {
-    console.log('Im inside the thunk')
     try {
       const deleted = await axios.delete(`/auth/${id}`)
       dispatch(removeUser())
