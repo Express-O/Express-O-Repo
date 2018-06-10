@@ -4,6 +4,7 @@ import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Login, Signup, UserHome, SingleProduct, AllProducts, HomePage, NewProduct, EditProduct, ReviewForm, Cart, EditProfile } from './components'
 import { me } from './store'
+import AdminHome from './components/AdminHome';
 
 /**
  * COMPONENT
@@ -31,13 +32,13 @@ class Routes extends Component {
         <Route exact path="/product/swag" component={AllProducts} />
         <Route exact path="/product/all" component={AllProducts} />
         <Route path="/aboutUs" component={HomePage} />
-
         {
           isLoggedIn &&
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
             <Route path="/editprofile" component={EditProfile} />
+            <Route path="/admin/home" component={AdminHome} />
           </Switch>
         }
         {/* Displays our Login component as a fallback if the route does not match any of the aboves*/}
