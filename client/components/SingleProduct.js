@@ -3,9 +3,7 @@ import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { fetchSingleProduct, fetchAllReviews, addCart } from '../store/index';
 
-
-
- class SingleProduct extends Component {
+class SingleProduct extends Component {
     componentDidMount() {
         const { selectedProduct } = this.props;
         this.props.fetchSingleProduct(selectedProduct);
@@ -26,39 +24,39 @@ import { fetchSingleProduct, fetchAllReviews, addCart } from '../store/index';
                 <button type="button" onClick={() => this.props.addCart(product)}>ADD TO CART</button>
 
                 <Link to={`/products/edit/${product.id}`}>
-                   <button type="button">EDIT PRODUCT</button>
+                    <button type="button">EDIT PRODUCT</button>
                 </Link>
 
                 <Link to={`/products/edit/${product.id}`}>
-                   <button type="button">DELETE PRODUCT</button>
+                    <button type="button">DELETE PRODUCT</button>
                 </Link>
                 <hr />
                 <h2>Customer Reviews</h2>
                 <div>
                     <ul>
-                    {
-                        singleProductReviews.map(review => {
-                            return (
-                                <div key={review.id} >
+                        {
+                            singleProductReviews.map(review => {
+                                return (
+                                    <div key={review.id} >
                                         <h2>{review.title}</h2>
                                         <p>By {review.user.firstName} on {review.date.slice(0, 10)}</p>
                                         <p>Rating: {review.rating}</p>
                                         <p>{review.body}</p>
                                         <hr />
-                                </div>
-                            )
-                        })
-                    }
+                                    </div>
+                                )
+                            })
+                        }
                     </ul>
                 </div>
                 {
-                  isLoggedIn ?
-                  <Link to={`/products/${selectedProduct}/${userId}/review`}>
-                      <button type="button">WRITE A REVIEW</button>
-                  </Link> :
-                  <Link to = "/login">
-                    <button type="button">LOGIN TO WRITE A REVIEW</button>
-                  </Link>
+                    isLoggedIn ?
+                        <Link to={`/products/${selectedProduct}/${userId}/review`}>
+                            <button type="button">WRITE A REVIEW</button>
+                        </Link> :
+                        <Link to="/login">
+                            <button type="button">LOGIN TO WRITE A REVIEW</button>
+                        </Link>
                 }
             </div>
         )
@@ -66,7 +64,7 @@ import { fetchSingleProduct, fetchAllReviews, addCart } from '../store/index';
         return (
             <div>
                 {
-                selected ? content : loading
+                    selected ? content : loading
                 }
             </div>
         )
@@ -74,11 +72,11 @@ import { fetchSingleProduct, fetchAllReviews, addCart } from '../store/index';
 }
 
 const authDummyUser =
-{
-    id: 1,
-    firstName: 'Jenny',
-    email: 'jenny@email.com'
-};
+    {
+        id: 1,
+        firstName: 'Jenny',
+        email: 'jenny@email.com'
+    };
 
 const mapState = (state, ownProps) => {
     const productId = +ownProps.match.params.productId;
@@ -93,11 +91,11 @@ const mapState = (state, ownProps) => {
 }
 
 const mapDispatch = (dispatch) => {
-  return {
-    fetchSingleProduct: (productId) => dispatch(fetchSingleProduct(productId)),
-    fetchAllReviews: (productId) => dispatch(fetchAllReviews(productId)),
-    addCart: (product) => dispatch(addCart(product))
-  }
+    return {
+        fetchSingleProduct: (productId) => dispatch(fetchSingleProduct(productId)),
+        fetchAllReviews: (productId) => dispatch(fetchAllReviews(productId)),
+        addCart: (product) => dispatch(addCart(product))
+    }
 }
 
 export default withRouter(connect(mapState, mapDispatch)(SingleProduct))

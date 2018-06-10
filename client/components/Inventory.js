@@ -12,10 +12,13 @@ class Inventory extends Component {
     const { inventory } = this.props
     return (
       <div>
-        <div>
-          <Link to="/admin/home"><button type="button">DASHBOARD</button></Link>
-          <Link to="/admin/useraccounts"><button type="button">USER ACCOUNTS</button></Link>
-        </div>
+        <hr />
+        <Link to="/admin/home">
+          <button type="button">DASHBOARD</button>
+        </Link>
+        <Link to="/admin/useraccounts">
+          <button type="button">USER ACCOUNTS</button>
+        </Link>
         <table>
           <tr>
             <th>Id</th>
