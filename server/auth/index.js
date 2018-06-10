@@ -54,4 +54,13 @@ router.get('/me', (req, res) => {
   res.json(req.user)
 })
 
+router.delete('/:id', async (req, res, next) => {
+  // if (req.user.id !== req.params.id && user.admin === false) { res.json('must be the logged in user or admin to delete') }
+  try {
+    const user = await User.destroy({ where: { id: req.params.id } })
+    res.status(202).json("Account Deleted")
+  }
+  catch (error) { next(error) }
+})
+
 router.use('/google', require('./google'))

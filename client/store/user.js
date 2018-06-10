@@ -52,28 +52,20 @@ export const editProfile = (userInfo) => {
     catch (error) { console.log(error) }
   }
 }
+
 export const deleteAcct = (id) => {
-  console.log('clicked')
+  console.log('Heerrree!!!')
+  console.log('DATA====>', id)
   return async (dispatch) => {
-    console.log('in thunk')
+    console.log('Im inside the thunk')
     try {
-      const deleted = await axios.delete('/api/user', id)
+      const deleted = await axios.delete(`/auth/${id}`)
       dispatch(removeUser())
       history.push('/product/all')
     }
     catch (error) { console.log(error) }
   }
 }
-// export const editProfile = (userInfo) =>
-//   dispatch =>
-//     axios.put(`/auth/${userInfo.formName}`, userInfo)
-//       .then(res => {
-//         dispatch(getUser(res.data))
-//         history.push('/home')
-//       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
-//         dispatch(getUser({ error: authError }))
-//       })
-//       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
 
 export const logout = () =>
   dispatch =>
@@ -100,3 +92,14 @@ export default function (state = defaultUser, action) {
       return state
   }
 }
+
+// export const editProfile = (userInfo) =>
+//   dispatch =>
+//     axios.put(`/auth/${userInfo.formName}`, userInfo)
+//       .then(res => {
+//         dispatch(getUser(res.data))
+//         history.push('/home')
+//       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
+//         dispatch(getUser({ error: authError }))
+//       })
+//       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))

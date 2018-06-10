@@ -24,14 +24,4 @@ router.get('/:userId', async (req, res, next) => {
   } catch (error) { next(error) }
 })
 
-router.delete('/delete', async (req, res, next) => {
-  if (req.user.id !== req.body.id && user.admin === false) { res.json('must be the logged in user or admin to delete') }
-  try {
-    const user = await User.destroy({ where: { id: req.body.id } })
-    res.session.destroy()
-    res.status(202).json("Account Deleted")
-  }
-  catch (error) { next(error) }
-})
-
 module.exports = router

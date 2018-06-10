@@ -27,7 +27,7 @@ export const UserHome = (props) => {
         </Link>
       </div>
       <div>
-        <button type="button" onClick={(evt) => deleteAcct(id)}>DELETE ACCOUNT</button>
+        <button type="button" onClick={() => props.deleteAcct(id)}>DELETE ACCOUNT</button>
       </div>
       <div>
         <h4>Past Purchases:</h4>
