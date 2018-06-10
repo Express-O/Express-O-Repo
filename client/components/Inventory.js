@@ -19,7 +19,7 @@ class Inventory extends Component {
         <Link to="/admin/useraccounts">
           <button type="button">USER ACCOUNTS</button>
         </Link>
-        <Link to="/products/add">
+        <Link to="/admin/addproducts">
           <button type="button">ADD NEW PRODUCT</button>
         </Link>
         <table>

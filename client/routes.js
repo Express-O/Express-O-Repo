@@ -22,7 +22,9 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />
+
         <Route path="/products/:productId/:userId/review" component={ReviewForm} />
+        <Route exact path="/products/edit/:productId" component={EditProduct} />
         <Route path="/products/:productId" component={SingleProduct} />
         <Route exact path="/product" component={AllProducts} />
         <Route exact path="/product/coffee" component={AllProducts} />
@@ -37,8 +39,7 @@ class Routes extends Component {
             <Route path="/editprofile" component={EditProfile} />
             <Route path="/admin/home" component={AdminHome} />
             <Route exact path="/admin/inventory" component={Inventory} />
-            <Route path="/products/add" component={NewProduct} />
-            <Route exact path="/products/edit/:productId" component={EditProduct} />
+            <Route path="/admin/addproduct" component={NewProduct} />
           </Switch>
         }
         {/* Displays our Login component as a fallback if the route does not match any of the aboves*/}

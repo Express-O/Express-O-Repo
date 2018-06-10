@@ -10,7 +10,7 @@ const AdminHome = (props) => {
       <Link to="/admin/inventory">
         <button type="button">VIEW PRODUCT INVENTORY</button>
       </Link>
-      <Link to="/products/add">
+      <Link to="/admin/addproduct">
         <button type="button">ADD NEW PRODUCT</button>
       </Link>
       <Link to="/admin/useraccounts">
