@@ -8,7 +8,7 @@ import { deleteAcct } from '../store'
  * COMPONENT
  */
 export const UserHome = (props) => {
-  const { email, firstName, lastName, streetName, apt, city, state, zip, country } = props
+  const { email, firstName, lastName, streetName, apt, city, state, zip, country, id } = props
 
   return (
     <div>
@@ -27,7 +27,7 @@ export const UserHome = (props) => {
         </Link>
       </div>
       <div>
-        <button type="button" onClick={() => deleteAcct(props.id)}>DELETE ACCOUNT</button>
+        <button type="button" onClick={(evt) => deleteAcct(id)}>DELETE ACCOUNT</button>
       </div>
       <div>
         <h4>Past Purchases:</h4>

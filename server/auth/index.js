@@ -50,14 +50,6 @@ router.post('/logout', (req, res) => {
   res.redirect('/product/all')
 })
 
-router.delete('/', async (req, res, next) => {
-  try {
-    const deleted = await User.destroy({ where: { id: req.body.id } })
-    res.status(202).json("Account Deleted")
-  }
-  catch (error) { next(error) }
-})
-
 router.get('/me', (req, res) => {
   res.json(req.user)
 })

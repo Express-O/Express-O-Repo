@@ -53,10 +53,15 @@ export const editProfile = (userInfo) => {
   }
 }
 export const deleteAcct = (id) => {
+  console.log('clicked')
   return async (dispatch) => {
-    await axios.delete('/auth/', id)
-    dispatch(removeUser())
-    history.push('/product/all')
+    console.log('in thunk')
+    try {
+      const deleted = await axios.delete('/api/user', id)
+      dispatch(removeUser())
+      history.push('/product/all')
+    }
+    catch (error) { console.log(error) }
   }
 }
 // export const editProfile = (userInfo) =>
