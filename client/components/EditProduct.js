@@ -7,7 +7,7 @@ class EditProduct extends Component {
 
   constructor(props) {
     super(props)
-    this.state = props.product
+    this.state = {}
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -15,6 +15,7 @@ class EditProduct extends Component {
   componentDidMount() {
     const { selectedProduct } = this.props;
     this.props.fetchSingleProduct(selectedProduct);
+    this.setState(this.props.product)
   }
 
   handleChange(event) {
@@ -32,6 +33,7 @@ class EditProduct extends Component {
 
   render() {
     const { product } = this.props
+    console.log(this.props.product)
     if (!product) {
       return (<div>Loading...</div>)
     }
@@ -76,7 +78,7 @@ class EditProduct extends Component {
           </label>
           <input type="text" name="category" value={this.state.category} onChange={this.handleChange} />
 
-          <button type="submit">SAVE</button>
+          <button type="submit">SAVE CHANGES</button>
         </form>
       </div>
     )
