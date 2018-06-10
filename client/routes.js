@@ -39,7 +39,6 @@ class Routes extends Component {
             <Route path="/editprofile" component={EditProfile} />
             <Route path="/admin/home" component={AdminHome} />
             <Route exact path="/admin/inventory" component={Inventory} />
-            <Route exact path="admin/inventory/:inventoryid" component={SingleInventory} />
           </Switch>
         }
         {/* Displays our Login component as a fallback if the route does not match any of the aboves*/}

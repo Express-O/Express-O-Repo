@@ -26,6 +26,7 @@ class Inventory extends Component {
             <th>Quantity</th>
             <th>Price</th>
             <th>Category</th>
+            <th>In-Depth</th>
           </tr>
           {
             inventory.map(item => {
@@ -34,8 +35,9 @@ class Inventory extends Component {
                   <td>{item.id}</td>
                   <td>{item.title}</td>
                   <td>{item.inventory}</td>
+                  <td>{item.price}</td>
                   <td>{item.category}</td>
-                  <td><Link to={`/admin/inventory/${item.id}`}>Edit/Details</Link></td>
+                  <td><Link to={`/products/edit/${item.id}`}>Edit/Details</Link></td>
                 </tbody>
               )
             })

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { editProduct } from '../store';
+import SingleProduct from './SingleProduct'
 
 class EditProduct extends Component {
 
@@ -25,40 +26,48 @@ class EditProduct extends Component {
   }
 
 
-  render () {
+  render() {
+    const { product } = this.props
     return (
       <div>
+        <div>
+          <h1>{product.title}</h1>
+          <hr />
+          <img src={product.photo} />
+          <p>Details: {product.description}</p>
+          <p>Price: ${product.price}</p>
+        </div>
         <h1>Edit Product Form</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
             Product Name:
           </label>
-          <input type="text" name="title" value={this.state.title} onChange={this.handleChange}/>
+          <input type="text" name="title" value={this.state.title} onChange={this.handleChange} />
 
           <label>
             Product Description:
           </label>
-          <input type="text" name="description" value={this.state.description} onChange={this.handleChange}/>
+          <input type="text" name="description" value={this.state.description} onChange={this.handleChange} />
 
           <label>
             Product Price:
           </label>
-          <input type="text" name="price" value={this.state.price} onChange={this.handleChange}/>
+          <input type="text" name="price" value={this.state.price} onChange={this.handleChange} />
 
           <label>
             Inventory Quantity:
           </label>
-          <input type="text" name="inventory" value={this.state.inventory} onChange={this.handleChange}/>
+          <input type="text" name="inventory" value={this.state.inventory} onChange={this.handleChange} />
 
           <label>
             Product Image:
           </label>
-          <input type="text" name="photo" value={this.state.photo} onChange={this.handleChange}/>
+          <input type="text" name="photo" value={this.state.photo} onChange={this.handleChange} />
 
           <label>
             Product Category:
           </label>
-          <input type="text" name="category" value={this.state.category} onChange={this.handleChange}/>
+          <input type="text" name="category" value={this.state.category} onChange={this.handleChange} />
 
           <button type="submit">SAVE</button>
         </form>
