@@ -1,5 +1,4 @@
 import axios from 'axios'
-import AllProducts from '../components';
 
 //Action types
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
@@ -75,6 +74,6 @@ export default function (state = defaultAllProducts, action) {
 
     default:
       return state
- }
+  }
 }
 
