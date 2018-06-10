@@ -31,13 +31,11 @@ class Inventory extends Component {
             inventory.map(item => {
               return (
                 <tbody key={item.id}>
-                  <tr>
-                    <td>{item.id}</td>
-                    <td>{item.title}</td>
-                    <td>{item.inventory}</td>
-                    <td>{item.category}</td>
-                    <td><Link to={`/admin/inventory/${inventory.id}`}>Edit Details</Link></td>
-                  </tr>
+                  <td>{item.id}</td>
+                  <td>{item.title}</td>
+                  <td>{item.inventory}</td>
+                  <td>{item.category}</td>
+                  <td><Link to={`/admin/inventory/${item.id}`}>Edit/Details</Link></td>
                 </tbody>
               )
             })
