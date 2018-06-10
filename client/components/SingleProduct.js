@@ -22,14 +22,6 @@ class SingleProduct extends Component {
                 <p>Details: {product.description}</p>
                 <p>Price: ${product.price}</p>
                 <button type="button" onClick={() => this.props.addCart(product)}>ADD TO CART</button>
-
-                <Link to={`/products/edit/${product.id}`}>
-                    <button type="button">EDIT PRODUCT</button>
-                </Link>
-
-                <Link to={`/products/edit/${product.id}`}>
-                    <button type="button">DELETE PRODUCT</button>
-                </Link>
                 <hr />
                 <h2>Customer Reviews</h2>
                 <div>
