@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
-import { editProduct } from '../store';
-import SingleProduct from './SingleProduct'
+import { editProduct, fetchSingleProduct } from '../store';
 
 class EditProduct extends Component {
 
@@ -11,6 +10,11 @@ class EditProduct extends Component {
     this.state = props.product
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentDidMount() {
+    const { selectedProduct } = this.props;
+    this.props.fetchSingleProduct(selectedProduct);
   }
 
   handleChange(event) {
@@ -28,6 +32,9 @@ class EditProduct extends Component {
 
   render() {
     const { product } = this.props
+    if (!product) {
+      return (<div>Loading...</div>)
+    }
     return (
       <div>
         <div>
@@ -79,13 +86,15 @@ class EditProduct extends Component {
 const mapState = (state, ownProps) => {
   const productId = +ownProps.match.params.productId
   return {
-    product: state.allProducts.find(product => productId === product.id)
+    product: state.product,
+    selectedProduct: productId,
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    editProduct: product => dispatch(editProduct(product))
+    editProduct: product => dispatch(editProduct(product)),
+    fetchSingleProduct: (productId) => dispatch(fetchSingleProduct(productId))
   }
 }
 
