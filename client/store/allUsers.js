@@ -15,7 +15,7 @@ const getAllUsers = allUsers => ({
 //Thunk Creator
 export const fetchUsers = () => {
   return async (dispatch) => {
-    const res = await axios.get(`/api/users`);
+    const res = await axios.get(`/auth/users`);
     const data = res.data;
     dispatch(getAllUsers(data))
   }

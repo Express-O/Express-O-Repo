@@ -39,6 +39,12 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  fullName: {
+    type: Sequelize.VIRTUAL,
+    get() {
+      return this.get('firstName') + ' ' + this.get('lastName')
+    }
+  },
   streetName: {
     type: Sequelize.STRING,
     allowNull: false
@@ -64,6 +70,12 @@ const User = db.define('user', {
   },
   poBox: {
     type: Sequelize.STRING,
+  },
+  fullAddress: {
+    type: Sequelize.VIRTUAL,
+    get() {
+      return this.get('poBox') + ', ' + this.get('streetName') + ', ' + this.get('apt') + ', ' + this.get('city') + ', ' + this.get('state') + ', ' + this.get('country')
+    }
   }
 })
 

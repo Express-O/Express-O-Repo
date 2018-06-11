@@ -18,6 +18,15 @@ router.post('/login', (req, res, next) => {
     .catch(next)
 })
 
+router.get('/users', async (req, res, next) => {
+  //code for restricting access to ADMIN ONLY
+  try {
+    const users = await User.findAll({ where: { isAdmin: false } })
+    res.json(users)
+  }
+  catch (error) { next(error) }
+})
+
 router.post('/signup', (req, res, next) => {
   User.create(req.body)
     .then(user => {
