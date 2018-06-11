@@ -18,7 +18,7 @@ const defaultUser = {}
  */
 const getUser = user => ({ type: GET_USER, user })
 const removeUser = () => ({ type: REMOVE_USER })
-const editUser = user => ({type: EDIT_USER, user})
+const editUser = user => ({ type: EDIT_USER, user })
 
 /**
  * THUNK CREATORS
@@ -53,16 +53,16 @@ export const editProfile = (userInfo) => {
   }
 }
 
-// export const editProfile = (userInfo) =>
-//   dispatch =>
-//     axios.put(`/auth/${userInfo.formName}`, userInfo)
-//       .then(res => {
-//         dispatch(getUser(res.data))
-//         history.push('/home')
-//       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
-//         dispatch(getUser({ error: authError }))
-//       })
-//       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
+export const deleteAcct = (id) => {
+  return async (dispatch) => {
+    try {
+      const deleted = await axios.delete(`/auth/${id}`)
+      dispatch(removeUser())
+      history.push('/product/all')
+    }
+    catch (error) { console.log(error) }
+  }
+}
 
 export const logout = () =>
   dispatch =>
@@ -84,8 +84,19 @@ export default function (state = defaultUser, action) {
     case REMOVE_USER:
       return defaultUser
     case EDIT_USER:
-      return {...state, user: action.user}
+      return { ...state, user: action.user }
     default:
       return state
   }
 }
+
+// export const editProfile = (userInfo) =>
+//   dispatch =>
+//     axios.put(`/auth/${userInfo.formName}`, userInfo)
+//       .then(res => {
+//         dispatch(getUser(res.data))
+//         history.push('/home')
+//       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
+//         dispatch(getUser({ error: authError }))
+//       })
+//       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
