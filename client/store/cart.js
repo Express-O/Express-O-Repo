@@ -39,7 +39,7 @@ const setUpdatedCart = updatedCart => ({
 export const updateCart = (newCart) => {
   return async (dispatch) => {
     const res = await axios.put('/api/cart/newCart', newCart);
-    console.log("THis is the data from thunk", data) // old data
+    console.log("THis is the data from thunk", res) // old data
     const data = res.data;
     console.log('Cart Data from SERVER: ', data)
     dispatch(setUpdatedCart(data));

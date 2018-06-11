@@ -5,6 +5,7 @@ const { Order, LineItem } = require('../db/models')
 router.get('/', (req, res, next) => {
   try {
     const cart = req.session.cart
+    res.set({"Cache-Control": "no-cache"})
     res.json(cart)
   } catch (err) {
     next(err)

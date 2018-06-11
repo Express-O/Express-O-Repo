@@ -47,7 +47,7 @@ class Cart extends Component {
       let title = product.title
       if (!cartHashTbl[title] || !cartHashTbl[title].quantity) {
         product.quantity = 1
-        cartHashTbl[title]= product
+        cartHashTbl[title] = product
         // console.log('inside if block')
       } else if (cartHashTbl[title] && product.quantity) {
         cartHashTbl[title] = product
