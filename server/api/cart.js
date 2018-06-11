@@ -5,8 +5,9 @@ const { Order, LineItem } = require('../db/models')
 router.get('/', (req, res, next) => {
   try {
     const cart = req.session.cart
-    res.set({"Cache-Control": "no-cache"})
-    res.json(cart)
+    res.status(200).json(cart)
+    // res.set({"Cache-Control": "no-cache"})    // get rid of caching ???
+    // res.json(cart)
   } catch (err) {
     next(err)
   }
@@ -18,8 +19,9 @@ router.put('/', (req, res, next) => {
   try {
     const product = req.body
     const cart = req.session.cart
-    const updatedCart = cart.push(product)
-    res.status(200).json(updatedCart)
+    cart.push(product)
+    // const updatedCart = cart.push(product)
+    res.status(200).json(cart)
   } catch (err) {
     next(err)
   }
@@ -29,11 +31,12 @@ router.put('/', (req, res, next) => {
 router.put('/newCart', (req, res, next) => {
   try {
     const newCart = req.body
-    let oldCart = req.session.cart
-    oldCart = newCart
-    const updatedCart = oldCart;
-    console.log("updated Cart in the backend api route =====> ", updatedCart)
-    res.status(200).send(updatedCart)
+    // let oldCart = req.session.cart
+    req.session.cart = newCart
+    // const updatedCart = oldCart;
+    console.log("session------------->", req.session.cart)
+    // console.log("updated Cart in the backend api route =====> ", updatedCart)
+    res.status(200).send(req.session.cart)
   } catch (err) {
     next(err)
   }

@@ -40,7 +40,37 @@ class Cart extends Component {
 
   render() {
     const { cart } = this.props;
-    console.log('CART', cart)
+    if (cart) {                                  // INITIAL APPROACH with Helper Func
+    //   let cartWithQty = cart.reduce((cartHashTbl, product) => {
+    //     // console.log('product from hashtbl', product)
+    //     let title = product.title
+    //     if (!cartHashTbl[title]) {
+    //       product.quantity = 1
+    //       cartHashTbl[title]= product
+    //       // console.log('inside if block')
+    //     } else {
+    //       // console.log('made it to else block - cartHashTbl', cartHashTbl)
+    //       cartHashTbl[title].quantity++
+    //     }
+    //     console.log('cartHashTbl', cartHashTbl)
+    //     return cartHashTbl
+    //   }, {})
+  
+    //     // console.log('CART W QTY', cartWithQty)
+  
+  
+    //     let helperFunc = (obj) => {
+    //       let cartWithQtyArr = []
+    //       for (var title in cartWithQty) {
+    //         let product = cartWithQty[title]
+    //         console.log('product', product)
+    //         cartWithQtyArr.push(product)
+    //       }
+    //       // console.log('cartWithQtyArr', cartWithQtyArr)
+    //       return cartWithQtyArr
+    //     }
+    //     let cartWithQtyArr = helperFunc(cartWithQty)
+    // console.log('CART', cart)
 
     let cartWithQty = cart.reduce((cartHashTbl, product) => {
       // console.log('product from hashtbl', product)
@@ -62,28 +92,11 @@ class Cart extends Component {
       console.log('CART W QTY', cartWithQty)
 
     console.log('CART QTY ARRAY', cartWithQtyArr)
-      // let helperFunc = (obj) => {
-      //   let cartWithQtyArr = []
-      //   for (var title in cartWithQty) {
-      //     let product = cartWithQty[title]
-      //     console.log('product', product)
-      //     cartWithQtyArr.push(product)
-      //   }
-      //   // console.log('cartWithQtyArr', cartWithQtyArr)
-      //   return cartWithQtyArr
-      // }
 
 
-
-
-
-    return (
-      <div>
-        <h2 style={{marginBottom: "0.5em", marginTop: "0.5em"}}>Shopping Cart</h2>
-        {
-          cartWithQtyArr.length
-          ?
-          <div style={cartListStyles}>
+        return (
+          <div>
+            <h2 style={{marginBottom: "0.5em", marginTop: "0.5em"}}>Shopping Cart</h2>
             {
           cartWithQtyArr.map(product => {
               let cartId = Math.random()
@@ -104,14 +117,18 @@ class Cart extends Component {
           <button type='button' onClick={() => this.props.emptyCart()}>Empty your cart</button>
           {/* <span className="badge">{cart.length}</span> */}
           </div>
-        : <p>Your shopping cart is empty!</p>
-        }
-      </div>
-    )
+        )
+    } else {
+      return (
+        <p>Your shopping cart is empty!</p>
+      )
+    }
+
   }
 }
 
 const mapState = state => {
+
   return {
     cart: state.cart
   }
