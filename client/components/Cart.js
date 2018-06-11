@@ -19,7 +19,7 @@ const cartCardStyles = {
 }
 
 class Cart extends Component {
-  constructor() { 
+  constructor() {
     super()
   }
 
@@ -29,7 +29,7 @@ class Cart extends Component {
 
   render() {
     const { cart } = this.props;
-    
+
     let cartWithQty = cart.reduce((cartHashTbl, product) => {
       // console.log('product from hashtbl', product)
       let title = product.title
@@ -42,6 +42,7 @@ class Cart extends Component {
         cartHashTbl[title].quantity++
       }
       console.log('cartHashTbl', cartHashTbl)
+      console.log('CART', cart)
       return cartHashTbl
     }, {})
 
