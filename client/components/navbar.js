@@ -5,12 +5,12 @@ import {Link, NavLink} from 'react-router-dom'
 import {logout} from '../store'
 import AllProducts from './AllProducts';
 import { isContext } from 'vm';
-
+import { Colors } from '@blueprintjs/core';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
-  <nav className="pt-navbar">
+  <nav className="pt-navbar" style={{ color: Colors.WHITE, background: Colors.BLACK }} >
     <div className="pt-navbar-group pt-align-left">
-      <h1>Express-O</h1>
+      <div className="pt-navbar-heading">Express-O</div>
     </div>
         {isLoggedIn ? (
           <div>
@@ -23,17 +23,17 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
         ) : (
           <div className="pt-navbar-group pt-align-right">
             {/* The navbar will show these links before you log in */}
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
+            <Link to="/login" style={{ color: Colors.COBALT4}}>Login</Link>
+            <Link to="/signup" style={{ color: Colors.COBALT4}}>Sign Up</Link>
             <span className="pt-navbar-divider"></span>
             <NavLink className="pt-button pt-minimal pt-icon-shopping-cart" to="/cart">Cart</NavLink>
           </div>
         )}
         <div>
-          <NavLink to = "/product/coffee" >Coffee</NavLink>
-          <NavLink to = "/product/swag" >Swag</NavLink>
-          <NavLink to = "/product/all" >All</NavLink>
-          <NavLink to ="/aboutUs">About Us</NavLink>
+          <NavLink to = "/product/coffee" style={{ color: Colors.COBALT4}}>Coffee</NavLink>
+          <NavLink to = "/product/swag" style={{ color: Colors.COBALT4}}>Swag</NavLink>
+          <NavLink to = "/product/all" style={{ color: Colors.COBALT4}}>All</NavLink>
+          <NavLink to ="/aboutUs" style={{ color: Colors.COBALT4}}>About Us</NavLink>
           <input className="pt-input" placeholder="Search..." type="text" />
         </div>
   </nav>
