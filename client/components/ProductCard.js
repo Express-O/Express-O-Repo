@@ -28,7 +28,7 @@ class ProductCard extends Component {
     const { cartWithQty, product, helperFunc } = this.props;
     let productTitle = product.title;
     console.log('Product title====>', productTitle)
-    cartWithQty[productTitle].quantity = this.state.productQty;
+    cartWithQty[productTitle].quantity = +this.state.productQty;
     let newCart = helperFunc(cartWithQty);
       console.log("NEW CART=====>", newCart)
       console.log("This is the product title in ProductCart", productTitle)
