@@ -31,7 +31,7 @@ class SingleProduct extends Component {
                                 return (
                                     <div key={review.id} >
                                         <h2>{review.title}</h2>
-                                        <p>By {review.user.firstName} on {review.date.slice(0, 10)}</p>
+                                        <p>By {review.user ?review.user.firstName : "Deleted User"} on {review.date.slice(0, 10)}</p>
                                         <p>Rating: {review.rating}</p>
                                         <p>{review.body}</p>
                                         <hr />
