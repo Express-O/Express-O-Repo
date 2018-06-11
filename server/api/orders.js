@@ -5,10 +5,14 @@ router.post('/', async (req, res, next) => {
   //if (!req.user) { res.json("You must be logged in to submit an order") }
   try {
     const order = await Order.create()
-    req.body.orderId = order.id
-    //if there's an array of items from the cart we need to map over and do this.
-    const item = await LineItem.create(req.body)
-    res.json("success!")
+
+    for (let product of req.body) {
+      product.orderId = order.id
+      await LineItem.create(product)
+    }
+
+
+    res.status(201).json("success!")
   } catch (err) {
     next(err)
   }
@@ -19,3 +23,5 @@ router.post('/', async (req, res, next) => {
 //todo: remember to add this to index
 //todo: remember to change this in the component
 //if time: the hashing should be done on the original cart in the thunk so that we dont have to keep writing this
+
+module.exports = router
