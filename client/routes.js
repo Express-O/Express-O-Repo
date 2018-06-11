@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, SingleProduct, AllProducts, HomePage, NewProduct, EditProduct, ReviewForm, Cart, EditProfile } from './components'
+import { Login, Signup, UserHome, SingleProduct, AllProducts, HomePage, NewProduct, EditProduct, ReviewForm, Cart, EditProfile, Inventory, AdminHome, AllUsers } from './components'
 import { me } from './store'
 
 /**
@@ -22,7 +22,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />
-        <Route path="/products/add" component={NewProduct} />
+
         <Route path="/products/:productId/:userId/review" component={ReviewForm} />
         <Route exact path="/products/edit/:productId" component={EditProduct} />
         <Route path="/products/:productId" component={SingleProduct} />
@@ -31,13 +31,16 @@ class Routes extends Component {
         <Route exact path="/product/swag" component={AllProducts} />
         <Route exact path="/product/all" component={AllProducts} />
         <Route path="/aboutUs" component={HomePage} />
-
         {
           isLoggedIn &&
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
             <Route path="/editprofile" component={EditProfile} />
+            <Route path="/admin/home" component={AdminHome} />
+            <Route exact path="/admin/inventory" component={Inventory} />
+            <Route path="/admin/addproduct" component={NewProduct} />
+            <Route exact path="/admin/useraccounts" component={AllUsers} />
           </Switch>
         }
         {/* Displays our Login component as a fallback if the route does not match any of the aboves*/}
