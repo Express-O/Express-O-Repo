@@ -59,9 +59,9 @@ class Cart extends Component {
     }, {})
     let cartWithQtyArr = Object.values(cartWithQty)
 
-      // console.log('CART W QTY', cartWithQty)
+      console.log('CART W QTY', cartWithQty)
 
-
+    console.log('CART QTY ARRAY', cartWithQtyArr)
       // let helperFunc = (obj) => {
       //   let cartWithQtyArr = []
       //   for (var title in cartWithQty) {
