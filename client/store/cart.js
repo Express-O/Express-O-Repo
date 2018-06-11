@@ -40,7 +40,9 @@ export const updateCart = (newCart) => {
   return async (dispatch) => {
     const res = await axios.put('/api/cart/newCart', newCart);
     console.log("THis is the data from thunk", res.data) // old data
+    console.log("THis is the data from thunk", res) // old data
     const data = res.data;
+    console.log('Cart Data from SERVER: ', data)
     dispatch(setUpdatedCart(data));
   }
 }
@@ -71,7 +73,14 @@ export const emptyCart = () => {
     dispatch(setEmptyCart(data))
   }
 }
+export const submitOrder = (order) => {
+  return async (dispatch) => {
+    const res = await axios.post('/api/orders', order)
+    const data = res.data
+    //todo: when payment info page is set up it needs to redirect to there here
 
+  }
+}
 export const removeProduct = (productId) => {
   return async (dispatch) => {
     const res = await axios.delete(`/api/cart/${productId}`)
@@ -104,6 +113,7 @@ export default function (state = defaultCart, action) {
       return action.cart
 
     case SET_UPDATED_CART:
+       console.log('UPDATE!', action.updatedCart)
        return action.updatedCart
 
     default:

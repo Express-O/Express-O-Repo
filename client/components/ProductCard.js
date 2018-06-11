@@ -29,7 +29,8 @@ class ProductCard extends Component {
     let productTitle = product.title;
     console.log('Product title====>', productTitle)
     cartWithQty[productTitle].quantity = +this.state.productQty;
-    let newCart = helperFunc(cartWithQty);
+    // let newCart = helperFunc(cartWithQty);
+    let newCart = Object.values(cartWithQty);
       console.log("NEW CART=====>", newCart)
       console.log("This is the product title in ProductCart", productTitle)
       console.log('UPDATED QUANTITY',  cartWithQty[productTitle].quantity)
@@ -43,17 +44,17 @@ class ProductCard extends Component {
 
   render () {
     const { product, removeProduct } = this.props
-    
+
     return (
       <div>
         <NavLink
             to={`/products/${product.id}`}>
               <span>{product.title}</span>
         </NavLink>
-  
+
         <form onSubmit={this.handleSubmit}>
           <label>Quantity</label>
-          <input type="number" min="1" name="quantity" value={this.state.productQty} onChange={this.handleChange} />  
+          <input type="number" min="1" name="quantity" value={this.state.productQty} onChange={this.handleChange} />
           <button type="submit">Update</button>
         </form>
 

@@ -72,21 +72,44 @@ class AuthForm extends Component {
             {
               name === 'signup' || name === 'editProfile' ?
                 <div>
-                  <label htmlFor="firstName" ><small>First Name:</small></label>
-                  <input name="firstName" type="text" defaultValue={this.state.firstName} />
-                  <label htmlFor="lastName"><small>Last Name:</small></label>
-                  <input name="lastName" type="text" defaultValue={this.state.lastName} />
-                  <label htmlFor="streetName"><small>Street Adress:</small></label>
+                  <label htmlFor="firstName" className="pt-label .modifier"><small>First Name:</small></label>
+                  <input
+                  name="firstName"
+                  type="text"
+                  defaultValue={this.state.firstName}
+                  className="pt-input"
+                  style={{width: '180px', margin: '0 auto'}}
+                  placeholder="input text here"
+                  dir="auto"
+                  />
+
+                  <label htmlFor="lastName" className="pt-label .modifier"><small>Last Name:</small></label>
+                  <input
+                  name="lastName"
+                  type="text"
+                  defaultValue={this.state.lastName}
+                  className="pt-input"
+                  style={{width: '180px', margin: '0 auto'}}
+                  placeholder="input text here"
+                  dir="auto"
+                  />
+
+                  <label htmlFor="streetName" className="pt-label .modifier"><small>Street Adress:</small></label>
                   <input name="streetName" type="text" defaultValue={this.state.streetName} />
-                  <label htmlFor="apt"><small>Apt:</small></label>
+
+                  <label htmlFor="apt" className="pt-label .modifier"><small>Apt:</small></label>
                   <input name="apt" type="text" defaultValue={this.state.apt} />
-                  <label htmlFor="city"><small>City:</small></label>
+
+                  <label htmlFor="city" className="pt-label .modifier"><small>City:</small></label>
                   <input name="city" type="text" defaultValue={this.state.city} />
-                  <label htmlFor="state"><small>State:</small></label>
+
+                  <label htmlFor="state" className="pt-label .modifier"><small>State:</small></label>
                   <input name="state" type="text" defaultValue={this.state.state} />
-                  <label htmlFor="zip"><small>Zip:</small></label>
+
+                  <label htmlFor="zip" className="pt-label .modifier"><small>Zip:</small></label>
                   <input name="zip" type="text" defaultValue={this.state.zip} />
-                  <label htmlFor="country"><small>Country:</small></label>
+
+                  <label htmlFor="country" className="pt-label .modifier"><small>Country:</small></label>
                   <input name="country" type="text" defaultValue={this.state.country} />
                 </div> : null
             }
