@@ -39,6 +39,7 @@ class AllUsers extends Component {
                   <td>{user.email}</td>
                   <td>{user.fullAddress}</td>
                   <td><Link to="/orderhistory">Order History </Link></td>
+                  <td><Link to="/editprofile">Edit/Details</Link></td>
                 </tbody>
               )
             })
