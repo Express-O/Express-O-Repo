@@ -74,7 +74,7 @@ const User = db.define('user', {
   fullAddress: {
     type: Sequelize.VIRTUAL,
     get() {
-      return this.get('poBox') + ', ' + this.get('streetName') + ', ' + this.get('apt') + ', ' + this.get('city') + ', ' + this.get('state') + ', ' + this.get('country')
+      return 'PO Box ' + this.get('poBox') + ', ' + this.get('streetName') + ', ' + 'Apt. ' + this.get('apt') + ', ' + this.get('city') + ', ' + this.get('state') + ', ' + this.get('country')
     }
   }
 })

@@ -21,7 +21,7 @@ router.post('/login', (req, res, next) => {
 router.get('/users', async (req, res, next) => {
   //code for restricting access to ADMIN ONLY
   try {
-    const users = await User.findAll({ where: { isAdmin: false } })
+    const users = await User.findAll()
     res.json(users)
   }
   catch (error) { next(error) }

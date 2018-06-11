@@ -10,7 +10,7 @@ class AllUsers extends Component {
   }
 
   render() {
-    const { allUsers } = this.props;
+    const { customers } = this.props;
     return (
       <div>
         <hr />
@@ -31,13 +31,12 @@ class AllUsers extends Component {
             <th>Address</th>
           </tr>
           {
-            allUsers.map(user => {
+            customers.map(user => {
               return (
                 <tbody key={user.id}>
                   <td>{user.id}</td>
-                  <td>{user.firstName} {user.lastName}</td>
+                  <td>{user.fullName}</td>
                   <td>{user.email}</td>
-                  <td>{user.isAdmin}</td>
                   <td>{user.fullAddress}</td>
                   <td><Link to="/orderhistory">Order History </Link></td>
                 </tbody>
@@ -50,7 +49,10 @@ class AllUsers extends Component {
   }
 }
 const mapStateToProps = state => {
-  return { allUsers: state.allUsers }
+  const allUsers = state.allUsers
+  return {
+    customers: allUsers.filter(customer => customer.isAdmin === false)
+  }
 }
 const mapDispatchToProps = dispatch => {
   return ({
