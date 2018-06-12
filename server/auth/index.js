@@ -64,7 +64,7 @@ router.get('/me', (req, res) => {
 })
 
 router.delete('/:id', async (req, res, next) => {
-  // if (req.user.id !== req.params.id && user.admin === false) { res.json('must be the logged in user or admin to delete') }
+  if (req.user.id !== req.params.id && req.user.isAdmin === false) { res.json('must be the logged in user or admin to delete') }
   try {
     const user = await User.destroy({ where: { id: req.params.id } })
     res.status(202).json("Account Deleted")
