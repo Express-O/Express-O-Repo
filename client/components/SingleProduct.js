@@ -1,20 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-import { fetchSingleProduct, fetchAllReviews, addCart } from '../store/index';
+import { getSingleProduct, fetchAllReviews, addCart, fetchProducts } from '../store/index';
 
 class SingleProduct extends Component {
     componentDidMount() {
         const { selectedProduct } = this.props;
-        this.props.fetchSingleProduct(selectedProduct);
         this.props.fetchAllReviews(selectedProduct);
+        this.props.fetchProducts()
+        this.props.getSingleProduct(this.props.match.params.productId)
     }
 
     render() {
         const { product, selectedProduct, singleProductReviews, userId, isLoggedIn } = this.props;
-        const selected = selectedProduct || {};
-        const loading = <h1>Loading...</h1>
-        const content = (
+        if (!product) {
+          return (<div> Loading...</div>)
+        }
+        return (
             <div>
               <div className="individualProduct">
                 <h1>{product.title}</h1>
@@ -61,38 +63,27 @@ class SingleProduct extends Component {
             </div>
         )
 
-        return (
-            <div>
-                {
-                    selected ? content : loading
-                }
-            </div>
-        )
+
     }
 }
 
-const authDummyUser =
-    {
-        id: 1,
-        firstName: 'Jenny',
-        email: 'jenny@email.com'
-    };
 
 const mapState = (state, ownProps) => {
     const productId = +ownProps.match.params.productId;
-    const userId = authDummyUser.id
+    const allProducts = state.allProducts
+
     return {
-        product: state.product,
         selectedProduct: productId,
         singleProductReviews: state.singleProductReviews,
-        userId,
-        isLoggedIn: !!state.user.id
+        isLoggedIn: !!state.user.id,
+        product: allProducts.filter(item => item.id === productId)[0]
     }
 }
 
 const mapDispatch = (dispatch) => {
     return {
-        fetchSingleProduct: (productId) => dispatch(fetchSingleProduct(productId)),
+        fetchProducts: () => dispatch(fetchProducts()),
+        getSingleProduct: (id) => dispatch(getSingleProduct(id)),
         fetchAllReviews: (productId) => dispatch(fetchAllReviews(productId)),
         addCart: (product) => dispatch(addCart(product))
     }
