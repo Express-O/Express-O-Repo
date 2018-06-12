@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { NavLink, Link, withRouter } from 'react-router-dom'
-import Cart from './Cart'
-import { updateCart } from '../store/index';
+import { NavLink, withRouter } from 'react-router-dom'
+import { updateCart, removeProduct } from '../store/index';
 
 
 class ProductCard extends Component {
@@ -16,6 +15,7 @@ class ProductCard extends Component {
   }
 
   handleChange (event) {
+    console.log('event target value', event.target.value)
     this.setState({
       productQty: event.target.value
     })
@@ -23,23 +23,17 @@ class ProductCard extends Component {
 
   handleSubmit (event) {
     event.preventDefault();
-    console.log("SUBMITTTTT")
+    const { product } = this.props;
+    console.log('product in handle submit', product)
+    let productIdAndQty = {
+      id: product.id,
+      quantity: this.state.productQty
+    }
+    this.props.updateCart(productIdAndQty);
 
-    const { cartWithQty, product, helperFunc } = this.props;
-    let productTitle = product.title;
-    console.log('Product title====>', productTitle)
-    cartWithQty[productTitle].quantity = +this.state.productQty;
-    // let newCart = helperFunc(cartWithQty);
-    let newCart = Object.values(cartWithQty);
-      console.log("NEW CART=====>", newCart)
-      console.log("This is the product title in ProductCart", productTitle)
-      console.log('UPDATED QUANTITY',  cartWithQty[productTitle].quantity)
-    this.props.updateCart(newCart);  //?????
-
-    this.setState({
-      productQty:  cartWithQty[productTitle].quantity
-    })
-    console.log('Local State product qty', this.state.productQty)
+    // this.setState({                               // need to set state????????
+    //   productQty: this.state.productQty
+    // })
   }
 
   render () {
@@ -54,7 +48,7 @@ class ProductCard extends Component {
 
         <form onSubmit={this.handleSubmit}>
           <label>Quantity</label>
-          <input type="number" min="1" name="quantity" value={this.state.productQty} onChange={this.handleChange} />
+          <input type="number" min="1" name="productQty" defaultValue={+product.quantity} onChange={this.handleChange} />
           <button type="submit">Update</button>
         </form>
 
@@ -68,7 +62,8 @@ class ProductCard extends Component {
 
 const mapDispatch = dispatch => {
   return {
-    updateCart: (newCart) => dispatch(updateCart(newCart))
+    updateCart: (newCart) => dispatch(updateCart(newCart)),
+    removeProduct: (productId) => dispatch(removeProduct(productId))
   }
 }
 
