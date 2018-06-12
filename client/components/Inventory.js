@@ -40,7 +40,7 @@ class Inventory extends Component {
                   <td>{item.inventory}</td>
                   <td>{item.price}</td>
                   <td>{item.category}</td>
-                  <td><Link to={`/products/edit/${item.id}`}>Edit/Details</Link></td>
+                  <td><Link to={`/admin/editproduct/${item.id}`}>Edit/Details</Link></td>
                 </tbody>
               )
             })
