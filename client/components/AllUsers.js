@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-import { fetchUsers } from '../store/index'
+import { fetchUsers, deleteAcct } from '../store/index'
 
 //need to add a ternary in return for if it is admin show add button
 class AllUsers extends Component {
@@ -10,7 +10,7 @@ class AllUsers extends Component {
   }
 
   render() {
-    const { customers } = this.props;
+    const { customers, deleteUser } = this.props;
     return (
       <div>
         <hr />
@@ -40,6 +40,9 @@ class AllUsers extends Component {
                   <td>{user.fullAddress}</td>
                   <td><Link to="/orderhistory">Order History </Link></td>
                   <td><Link to="/editprofile">Edit/Details</Link></td>
+                  <td>
+                    <button type="button" onClick={() => deleteUser(user.id)}>DELETE ACCOUNT</button>
+                  </td>
                 </tbody>
               )
             })
@@ -57,7 +60,8 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return ({
-    fetchUsers: () => dispatch(fetchUsers())
+    fetchUsers: () => dispatch(fetchUsers()),
+    deleteUser: (id) => dispatch(deleteAcct(id))
   })
 }
 
