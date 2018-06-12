@@ -18,11 +18,11 @@ class Routes extends Component {
 
     return (
       <Switch>
+        <Route exact path="/" component={AllProducts} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/cart" component={Cart} />
         <Route path="/products/:productId/:userId/review" component={ReviewForm} />
-        <Route exact path="/products/edit/:productId" component={EditProduct} />
         <Route path="/products/:productId" component={SingleProduct} />
         <Route exact path="/product" component={AllProducts} />
         <Route exact path="/product/coffee" component={AllProducts} />
@@ -41,6 +41,7 @@ class Routes extends Component {
           isLoggedInAdmin &&
           <Switch>
             <Route path="/admin/home" component={AdminHome} />
+            <Route exact path="/admin/editproduct/:productId" component={EditProduct} />
             <Route exact path="/admin/inventory" component={Inventory} />
             <Route path="/admin/addproduct" component={NewProduct} />
             <Route exact path="/admin/useraccounts" component={AllUsers} />
