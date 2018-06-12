@@ -37,18 +37,18 @@ class AllProducts extends Component {
     }
     return (
       <div>
-         <h2 style={{marginBottom: "0.5em", marginTop: "0.5em"}}>Products</h2>
 
-        <div style={productListStyles}>
+        <div className="allproducts">
           {
             arr.map(product => {
             return (
-              <div key={product.id} style={productCardStyles} className="pt-card pt-elevation-1 pt-interactive">
+              <div key={product.id} className="singleproduct">
                 <img src ={product.photo} />
+                <div className="singleproductinfo">
                 <Link to={`/products/${product.id}`}>
-                  <p>{product.title}</p>
+                  <p className="singleproducttitle">{product.title}  ${product.price}</p>
                 </Link>
-                <p>{product.price}</p>
+                </div>
               </div>
             )})
           }

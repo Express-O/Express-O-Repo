@@ -16,12 +16,18 @@ class SingleProduct extends Component {
         const loading = <h1>Loading...</h1>
         const content = (
             <div>
+              <div className="individualProduct">
                 <h1>{product.title}</h1>
                 <hr />
-                <img src={product.photo} />
-                <p>Details: {product.description}</p>
-                <p>Price: ${product.price}</p>
-                <button type="button" onClick={() => this.props.addCart(product)}>ADD TO CART</button>
+                <div className="indproductimg">
+                  <img  src={product.photo} />
+                </div>
+                <div className="indivproductdesc" >
+                  <p>Details: {product.description}</p>
+                  <p>Price: ${product.price}</p>
+                  <button type="button" onClick={() => this.props.addCart(product)}>ADD TO CART</button>
+                </div>
+              </div>
                 <hr />
                 <h2>Customer Reviews</h2>
                 <div>

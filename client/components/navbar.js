@@ -5,38 +5,35 @@ import {Link, NavLink} from 'react-router-dom'
 import {logout} from '../store'
 import AllProducts from './AllProducts';
 import { isContext } from 'vm';
-import { Colors } from '@blueprintjs/core';
+
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
-  <nav className="pt-navbar" style={{ color: Colors.WHITE, background: Colors.BLACK }} >
-    <div className="pt-navbar-group pt-align-left">
-      <div className="pt-navbar-heading">Express-O</div>
-    </div>
+    <div className="navbar">
+      <div className="logo">Express-O</div>
         {isLoggedIn ? (
-          <div>
+          <div className="navlink">
             {/* The navbar will show these links after you log in */}
-            <Link to="/home">My Account</Link>
-            <a href="#" onClick={handleClick}>
-              Logout
+            <Link to="/home" className="navlink">MY ACCOUNT</Link>
+            <a href="#" className="navlink" onClick={handleClick}>
+              LOGOUT
             </a>
           </div>
         ) : (
-          <div className="pt-navbar-group pt-align-right">
+          <div className="navlink">
             {/* The navbar will show these links before you log in */}
-            <Link to="/login" style={{ color: Colors.COBALT4}}>Login</Link>
-            <Link to="/signup" style={{ color: Colors.COBALT4}}>Sign Up</Link>
-            <span className="pt-navbar-divider"></span>
-            <NavLink className="pt-button pt-minimal pt-icon-shopping-cart" to="/cart">Cart</NavLink>
+            <Link to="/login" className="acctlink" >LOGIN</Link>
+            <Link to="/signup" className="acctlink">SIGN UP</Link>
+            <NavLink to="/cart" className="acctlink">Cart</NavLink>
           </div>
         )}
-        <div>
-          <NavLink to = "/product/coffee" style={{ color: Colors.COBALT4}}>Coffee</NavLink>
-          <NavLink to = "/product/swag" style={{ color: Colors.COBALT4}}>Swag</NavLink>
-          <NavLink to = "/product/all" style={{ color: Colors.COBALT4}}>All</NavLink>
-          <NavLink to ="/aboutUs" style={{ color: Colors.COBALT4}}>About Us</NavLink>
-          <input className="pt-input" placeholder="Search..." type="text" />
+        <div className="navlink">
+          <NavLink to = "/product/coffee" className="productlink">Coffee</NavLink>
+          <NavLink to = "/product/swag" className="productlink">Swag</NavLink>
+          <NavLink to = "/product/all"className="productlink">All</NavLink>
+          <NavLink to ="/aboutUs"className="productlink" >About Us</NavLink>
+          <input />
         </div>
-  </nav>
+    </div>
 )
 
 /**
