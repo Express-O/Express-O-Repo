@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div>
+    <div className="footer-container">
       <p>Contact Info</p>
       <p>Email: expressO@exressO.com</p>
       <p>Instagram: express-O</p>

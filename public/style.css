@@ -28,9 +28,6 @@ img {
   overflow: hidden;
 }
 
-.navbar{
-  /* display: inline-block; */
-}
 .logo{
   float: left;
   font-size: 2em;
@@ -73,14 +70,6 @@ img {
   justify-content: left;
 }
 
-/* .singleproducttitle {
-  padding: 1em;
-}
-
-.singleproductprice {
-  padding: 1em;
-} */
-
 .singleproductinfo{
   display: flex;
   justify-content: center;
@@ -89,9 +78,6 @@ img {
 .individualProduct {
   height: 35em;
   width: 60em;
-  /* display: flex; */
-  /* flex-wrap: wrap; */
-  /* justify-content: center; */
 }
 .indprodcontainer {
   display: flex;
@@ -103,10 +89,7 @@ img {
   height: 25em;
   width: 33em;
   margin: 1em;
-  /* padding-top: 4em; */
   align-content: left;
-  /* justify-content: left; */
-
 }
 .indivimg {
   width: auto;
@@ -123,7 +106,9 @@ img {
   width: 50em;
   margin: 1em;
   padding-top: 4em;
-  /* align-content: right; */
-  /* justify-content: right; */
+}
 
+.footer-container {
+ display: flex;
+ justify-content: center;
 }
