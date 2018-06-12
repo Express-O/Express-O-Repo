@@ -40,7 +40,7 @@ class Cart extends Component {
 
   render() {
     const { cart } = this.props;
-    if (cart) {                                  // INITIAL APPROACH with Helper Func
+    if (cart.length > 0) {                                  // INITIAL APPROACH with Helper Func
     //   let cartWithQty = cart.reduce((cartHashTbl, product) => {
     //     // console.log('product from hashtbl', product)
     //     let title = product.title
