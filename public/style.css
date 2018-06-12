@@ -86,30 +86,36 @@ img {
   justify-content: center;
 }
 
-.singleproductimg {
-}
-
 .individualProduct {
   height: 35em;
   width: 60em;
-  display: flex;
+  /* display: flex; */
   /* flex-wrap: wrap; */
   /* justify-content: center; */
 }
+.indprodcontainer {
+  display: flex;
+  height: 20em;
+  width: 60em;
+}
 
 .indproductimg{
-  height: auto;
+  height: 25em;
   width: 33em;
   margin: 1em;
-  padding-top: 4em;
+  /* padding-top: 4em; */
   align-content: left;
   /* justify-content: left; */
 
 }
+.indivimg {
+  width: auto;
+  height: auto;
+}
 
 .indproductimg img{
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .indivproductdesc{

@@ -19,13 +19,15 @@ class SingleProduct extends Component {
               <div className="individualProduct">
                 <h1>{product.title}</h1>
                 <hr />
-                <div className="indproductimg">
-                  <img src={product.photo} />
-                </div>
-                <div className="indivproductdesc" >
-                  <p>Details: {product.description}</p>
-                  <p>Price: ${product.price}</p>
-                  <button type="button" onClick={() => this.props.addCart(product)}>ADD TO CART</button>
+                <div className="indprodcontainer">
+                  <div className="indproductimg">
+                    <img className="indivimg" src={product.photo} />
+                  </div>
+                  <div className="indivproductdesc" >
+                    <p>Details: {product.description}</p>
+                    <p>Price: ${product.price}</p>
+                    <button type="button" onClick={() => this.props.addCart(product)}>ADD TO CART</button>
+                  </div>
                 </div>
               </div>
                 <hr />
