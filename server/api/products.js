@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
 // GET a product by id
 router.get('/:productId', async (req, res, next) => {
   try {
-    const product = await Product.findById(req.params.productId, {include: {model: Review}});
+    const product = await Product.findById(req.params.productId, { include: { model: Review } });
     res.json(product);
   } catch (error) { next(error) }
 })
@@ -23,7 +23,7 @@ router.get('/:productId', async (req, res, next) => {
 router.post('/:productId/:userId/review', async (req, res, next) => {
   const productId = req.params.productId;
   const userId = req.params.userId;
-  if (!req.user){res.json('You must be logged in to write a Review')}
+  if (!req.user) { res.json('You must be logged in to write a Review') }
   else {
     try {
       const newReview = await Review.create({
@@ -42,18 +42,19 @@ router.post('/:productId/:userId/review', async (req, res, next) => {
 //Get all reviews for a product by product id
 router.get('/:productId/reviews', async (req, res, next) => {
   const productId = req.params.productId;
-    try {
-      const reviews = await Review.findAll({
-        attributes: ['title', 'rating', 'body', 'date'],
-        where: { productId },
-        include: [{ model: User, attributes: ['firstName'] }]
-      })
-      res.json(reviews);
-    } catch (error) { next(error) }
+  try {
+    const reviews = await Review.findAll({
+      attributes: ['title', 'rating', 'body', 'date'],
+      where: { productId },
+      include: [{ model: User, attributes: ['firstName'] }]
+    })
+    res.json(reviews);
+  } catch (error) { next(error) }
 })
 
 // POST new product
 router.post('/', async (req, res, next) => {
+  if (!req.user.isAdmin) { res.json("Must be logged-in Admin to access") }
   try {
     const newProduct = await Product.create({
       title: req.body.title,
@@ -68,7 +69,7 @@ router.post('/', async (req, res, next) => {
 })
 
 // PUT updated product info for one product
-router.put('/:productId', async(req, res, next) => {
+router.put('/:productId', async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.productId)
 
@@ -82,7 +83,7 @@ router.put('/:productId', async(req, res, next) => {
 })
 
 // DELETE a product
-router.delete('/:productId', async(req, res, next) => {
+router.delete('/:productId', async (req, res, next) => {
   try {
     await Product.destroy({
       where: {
