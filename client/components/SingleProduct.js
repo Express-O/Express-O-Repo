@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-import { getSingleProduct, fetchAllReviews, addCart, fetchProducts } from '../store/index';
+import { getSingleProduct, fetchAllReviews, updateCart, fetchProducts } from '../store/index';
 
 class SingleProduct extends Component {
     componentDidMount() {
@@ -13,6 +13,11 @@ class SingleProduct extends Component {
 
     render() {
         const { product, selectedProduct, singleProductReviews, userId, isLoggedIn } = this.props;
+        const productIdAndQty = {
+          id: this.props.match.params.productId,
+          quantity: 1
+        }
+
         if (!product) {
           return (<div> Loading...</div>)
         }
@@ -28,7 +33,7 @@ class SingleProduct extends Component {
                   <div className="indivproductdesc" >
                     <p>Details: {product.description}</p>
                     <p>Price: ${product.price}</p>
-                    <button type="button" onClick={() => this.props.addCart(product)}>ADD TO CART</button>
+                    <button type="button" onClick={() => this.props.updateCart(productIdAndQty)}>ADD TO CART</button>
                   </div>
                 </div>
               </div>
@@ -62,8 +67,6 @@ class SingleProduct extends Component {
                 }
             </div>
         )
-
-
     }
 }
 
@@ -85,7 +88,7 @@ const mapDispatch = (dispatch) => {
         fetchProducts: () => dispatch(fetchProducts()),
         getSingleProduct: (id) => dispatch(getSingleProduct(id)),
         fetchAllReviews: (productId) => dispatch(fetchAllReviews(productId)),
-        addCart: (product) => dispatch(addCart(product))
+        updateCart: (product) => dispatch(updateCart(product))
     }
 }
 
