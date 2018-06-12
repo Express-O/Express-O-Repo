@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const User = require('../db/models/user')
+const Order = require('../db/models')
 module.exports = router
 
 router.post('/login', (req, res, next) => {
@@ -23,6 +24,14 @@ router.get('/users', async (req, res, next) => {
   try {
     const users = await User.findAll()
     res.json(users)
+  }
+  catch (error) { next(error) }
+})
+
+router.get('/orders', async (req, res, next) => {
+  try {
+    const orders = await Order.findAll()
+    res.json(orders)
   }
   catch (error) { next(error) }
 })
@@ -60,7 +69,6 @@ router.post('/logout', (req, res) => {
 })
 
 router.get('/me', (req, res) => {
-  console.log('REQ.USER. /ME=====>', req.user)
   res.json(req.user)
 })
 
