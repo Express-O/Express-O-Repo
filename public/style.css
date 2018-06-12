@@ -60,7 +60,10 @@ img {
   border-style: solid;
   border-width: .10px;
   margin: 1em;
+}
 
+.singleproduct:hover{
+  background-color: lightblue;
 }
 
 .allproducts{
@@ -81,7 +84,9 @@ img {
 .singleproductinfo{
   display: flex;
   justify-content: center;
+}
 
+.singleproductimg {
 }
 
 .individualProduct {
@@ -93,13 +98,18 @@ img {
 }
 
 .indproductimg{
-  height: 33em;
+  height: auto;
   width: 33em;
   margin: 1em;
   padding-top: 4em;
   align-content: left;
   /* justify-content: left; */
 
+}
+
+.indproductimg img{
+  width: 100%;
+  height: auto;
 }
 
 .indivproductdesc{

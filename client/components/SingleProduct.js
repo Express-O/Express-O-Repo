@@ -20,7 +20,7 @@ class SingleProduct extends Component {
                 <h1>{product.title}</h1>
                 <hr />
                 <div className="indproductimg">
-                  <img  src={product.photo} />
+                  <img src={product.photo} />
                 </div>
                 <div className="indivproductdesc" >
                   <p>Details: {product.description}</p>
