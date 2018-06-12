@@ -42,14 +42,14 @@ class AllProducts extends Component {
           {
             arr.map(product => {
             return (
-              <div key={product.id} className="singleproduct">
-                <img src ={product.photo} />
-                <div className="singleproductinfo">
-                <Link to={`/products/${product.id}`}>
-                  <p className="singleproducttitle">{product.title}  ${product.price}</p>
-                </Link>
+              <Link to={`/products/${product.id}`} key={product.id} className="singleproduct">
+                <div className="singleproductimg">
+                  <img src ={product.photo} />
                 </div>
-              </div>
+                <div className="singleproductinfo">
+                  <p className="singleproducttitle">{product.title}  ${product.price}</p>
+                </div>
+              </Link>
             )})
           }
         </div>

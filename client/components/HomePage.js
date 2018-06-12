@@ -2,7 +2,7 @@ import React from 'react'
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="home-container">
       <div className="homeImage">
         <img src="https://blogs.transparent.com/polish/files/2017/09/pp-hot-coffee-rf-istock.jpg" />
       </div>
