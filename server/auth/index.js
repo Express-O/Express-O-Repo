@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const User = require('../db/models/user')
+const Order = require('../db/models')
 module.exports = router
 
 router.post('/login', (req, res, next) => {
@@ -19,10 +20,18 @@ router.post('/login', (req, res, next) => {
 })
 
 router.get('/users', async (req, res, next) => {
-  //code for restricting access to ADMIN ONLY
+  if (!req.user.isAdmin) { res.json("Must be logged-in Admin to access") }
   try {
     const users = await User.findAll()
     res.json(users)
+  }
+  catch (error) { next(error) }
+})
+
+router.get('/orders', async (req, res, next) => {
+  try {
+    const orders = await Order.findAll()
+    res.json(orders)
   }
   catch (error) { next(error) }
 })
@@ -64,7 +73,7 @@ router.get('/me', (req, res) => {
 })
 
 router.delete('/:id', async (req, res, next) => {
-  // if (req.user.id !== req.params.id && user.admin === false) { res.json('must be the logged in user or admin to delete') }
+  if (req.user.id !== req.params.id && req.user.isAdmin === false) { res.json('must be the logged in user or admin to delete') }
   try {
     const user = await User.destroy({ where: { id: req.params.id } })
     res.status(202).json("Account Deleted")

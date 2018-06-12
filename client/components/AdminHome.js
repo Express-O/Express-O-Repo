@@ -19,6 +19,9 @@ const AdminHome = (props) => {
       <Link to="/signup">
         <button type="button">ADD NEW USER ACCOUNT</button>
       </Link>
+      <Link to="/admin/allorders">
+        <button type="button">VIEW ALL ORDERS</button>
+      </Link>
     </div >
   )
 }
