@@ -1,22 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-import { addCart, fetchCart, removeProduct, emptyCart, submitOrder } from '../store/index';
+import { addCart, fetchProducts, fetchCart, removeProduct, emptyCart, submitOrder } from '../store/index';
 import ProductCard from './ProductCard'
-
-const cartListStyles = {
-  display: "flex",
-  flexDirection: "row",
-  flexWrap: "wrap",
-  justifyContent: "center",
-}
-
-const cartCardStyles = {
-  maxWidth: "30%",
-  minWidth: "150px",
-  flex: "1",
-  margin: "5px",
-}
 
 class Cart extends Component {
   constructor() {
@@ -25,7 +11,8 @@ class Cart extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchCart()
+    this.props.fetchCart();
+    this.props.fetchProducts();
   }
 
   handleSubmit (evt, cartWithQtyArr) {
@@ -40,37 +27,7 @@ class Cart extends Component {
 
   render() {
     const { cart } = this.props;
-    if (cart.length > 0) {                                  // INITIAL APPROACH with Helper Func
-    //   let cartWithQty = cart.reduce((cartHashTbl, product) => {
-    //     // console.log('product from hashtbl', product)
-    //     let title = product.title
-    //     if (!cartHashTbl[title]) {
-    //       product.quantity = 1
-    //       cartHashTbl[title]= product
-    //       // console.log('inside if block')
-    //     } else {
-    //       // console.log('made it to else block - cartHashTbl', cartHashTbl)
-    //       cartHashTbl[title].quantity++
-    //     }
-    //     console.log('cartHashTbl', cartHashTbl)
-    //     return cartHashTbl
-    //   }, {})
-  
-    //     // console.log('CART W QTY', cartWithQty)
-  
-  
-    //     let helperFunc = (obj) => {
-    //       let cartWithQtyArr = []
-    //       for (var title in cartWithQty) {
-    //         let product = cartWithQty[title]
-    //         console.log('product', product)
-    //         cartWithQtyArr.push(product)
-    //       }
-    //       // console.log('cartWithQtyArr', cartWithQtyArr)
-    //       return cartWithQtyArr
-    //     }
-    //     let cartWithQtyArr = helperFunc(cartWithQty)
-    // console.log('CART', cart)
+    if (cart.length > 0) {               
 
     let cartWithQty = cart.reduce((cartHashTbl, product) => {
       // console.log('product from hashtbl', product)
@@ -128,14 +85,15 @@ class Cart extends Component {
 }
 
 const mapState = state => {
-
   return {
-    cart: state.cart
+    cart: state.cart,
+    product: state.product
   }
 }
 
 const mapDispatch = dispatch => {
   return {
+    fetchProducts: () => dispatch(fetchProducts()),
     addCart: (product) => dispatch(addCart(product)),
     fetchCart: () => dispatch(fetchCart()),
     removeProduct: (productId) => dispatch(removeProduct(productId)),

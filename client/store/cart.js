@@ -7,22 +7,20 @@ const REMOVED_PRODUCT = 'REMOVED_PRODUCT'
 const SET_EMPTY_CART = 'SET_EMPTY_CART'
 const SET_UPDATED_CART = 'SET_UPDATED_CART'
 
-
 //Action creator
 const getCart = cart => ({
   type: GET_CART,
   cart
 })
 
-
 const setCart = cart => ({
   type: SET_CART,
   cart
 })
 
-const removedProduct = productId => ({
+const removedProduct = cart => ({
   type: REMOVED_PRODUCT,
-  productId: productId
+  cart
 })
 
 const setEmptyCart = cart => ({
@@ -36,43 +34,30 @@ const setUpdatedCart = updatedCart => ({
 })
 
 //Thunk Creator
-export const updateCart = (newCart) => {
+export const updateCart = (product) => {
   return async (dispatch) => {
-    const res = await axios.put('/api/cart/newCart', newCart);
-    console.log("THis is the data from thunk", res.data) // old data
-    console.log("THis is the data from thunk", res) // old data
+    const res = await axios.put('/api/cart', product);
     const data = res.data;
-    console.log('Cart Data from SERVER: ', data)
     dispatch(setUpdatedCart(data));
   }
 }
 
 export const fetchCart = () => {
   return async (dispatch) => {
-    const res = await axios.get(`/api/cart`);
+    const res = await axios.get('/api/cart');
     const data = res.data;
-
     dispatch(getCart(data))
   }
 }
 
-export const addCart = (product) => {
-  return async (dispatch) => {
-    const res = await axios.put('/api/cart', product);
-    const data = res.data;
-    dispatch(setCart(data));
-    return data;
-  }
-}
-
 export const emptyCart = () => {
-  console.log('empty cart action triggered ===================')
   return async (dispatch) => {
     const res = await axios.delete('/api/cart')
     const data = res.data
     dispatch(setEmptyCart(data))
   }
 }
+
 export const submitOrder = (order) => {
   return async (dispatch) => {
     const res = await axios.post('/api/orders', order)
@@ -81,17 +66,17 @@ export const submitOrder = (order) => {
 
   }
 }
+
 export const removeProduct = (productId) => {
   return async (dispatch) => {
     const res = await axios.delete(`/api/cart/${productId}`)
-    dispatch(removedProduct(productId))
+    const data = res.data;
+    dispatch(removedProduct(data))
   }
 }
 
-
-
 //Initial State
-const defaultCart = []
+const defaultCart = {}
 
 //REDUCER
 export default function (state = defaultCart, action) {
@@ -104,16 +89,12 @@ export default function (state = defaultCart, action) {
       return action.cart
 
     case REMOVED_PRODUCT:
-      const productId = action.productId
-      const cartCopy = state.slice()
-      const filtered = cartCopy.filter(product => productId !== product.id)
-      return filtered
+      return action.cart
 
     case SET_EMPTY_CART:
       return action.cart
 
     case SET_UPDATED_CART:
-       console.log('UPDATE!', action.updatedCart)
        return action.updatedCart
 
     default:

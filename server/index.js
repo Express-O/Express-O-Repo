@@ -55,7 +55,7 @@ const createApp = () => {
 
   // Add cart to session
   app.use((req, res, next) => {
-    if (!req.session.cart) req.session.cart = []
+    if (!req.session.cart) req.session.cart = {}
     next()
   })
 
