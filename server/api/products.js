@@ -84,6 +84,7 @@ router.put('/:productId', async (req, res, next) => {
 
 // DELETE a product
 router.delete('/:productId', async (req, res, next) => {
+  if (!req.user.isAdmin) { res.json("Must be logged-in Admin to access") }
   try {
     await Product.destroy({
       where: {
