@@ -13,8 +13,8 @@ const Product = db.define('product', {
     type: Sequelize.TEXT
   },
   price: {
-    type: Sequelize.INTEGER,
-    defaultValue: 0
+    type: Sequelize.DOUBLE,
+    defaultValue: 0.00
   },
   inventory: {
     type: Sequelize.INTEGER,
@@ -31,6 +31,11 @@ const Product = db.define('product', {
     type: Sequelize.ENUM,
     values: ['swag', 'drink']
   }
+})
+
+
+Product.beforeSave(productInstance => {
+  productInstance.price = productInstance.price / 100.00
 })
 
 module.exports = Product
