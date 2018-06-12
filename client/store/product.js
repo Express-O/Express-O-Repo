@@ -5,21 +5,10 @@ import history from '../history'
 const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
 
 //Action creator
-const getSingleProduct = product => ({
+export const getSingleProduct = id => ({
     type: GET_SINGLE_PRODUCT,
-    product
+    id
 })
-
-
-//Thunk Creator
-export const fetchSingleProduct = (productId) => {
-    return async (dispatch, getState, { axios }) => {
-        const res = await axios.get(`/api/products/${productId}`);
-        const data = res.data;
-        dispatch(getSingleProduct(data));
-    }
-}
-
 
 //Initial State
 const defaultProduct = {}
@@ -28,7 +17,7 @@ const defaultProduct = {}
 export default function (state = defaultProduct, action) {
     switch (action.type) {
         case GET_SINGLE_PRODUCT:
-            return action.product
+            return action.id
         default:
             return state
     }

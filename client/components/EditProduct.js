@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
-import { editProduct, fetchSingleProduct } from '../store';
+import { editProduct, getSingleProduct, fetchProducts } from '../store';
 
 class EditProduct extends Component {
 
@@ -13,8 +13,8 @@ class EditProduct extends Component {
   }
 
   componentDidMount() {
-    const { selectedProduct } = this.props;
-    this.props.fetchSingleProduct(selectedProduct);
+    this.props.fetchProducts()
+    this.props.getSingleProduct(this.props.match.params.productId);
     this.setState(this.props.product)
   }
 
@@ -33,7 +33,6 @@ class EditProduct extends Component {
 
   render() {
     const { product } = this.props
-    console.log(this.props.product)
     if (!product) {
       return (<div>Loading...</div>)
     }
@@ -87,16 +86,18 @@ class EditProduct extends Component {
 
 const mapState = (state, ownProps) => {
   const productId = +ownProps.match.params.productId
+  const allProducts = state.allProducts
   return {
-    product: state.product,
-    selectedProduct: productId,
+    product: allProducts.filter(item => item.id === productId)[0]
+
   }
 }
 
 const mapDispatch = dispatch => {
   return {
     editProduct: product => dispatch(editProduct(product)),
-    fetchSingleProduct: (productId) => dispatch(fetchSingleProduct(productId))
+    fetchProducts: () => dispatch(fetchProducts()),
+    getSingleProduct: (productId) => dispatch(getSingleProduct(productId))
   }
 }
 
