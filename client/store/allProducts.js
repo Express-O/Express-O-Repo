@@ -5,7 +5,6 @@ const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 const ADD_PRODUCT = 'ADD_PRODUCT'
 const SET_UPDATED_PRODUCT = 'SET_UPDATED_PRODUCT'
 
-
 //Action creator
 const getAllProducts = allProducts => ({
   type: GET_ALL_PRODUCTS,
