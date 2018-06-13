@@ -37,7 +37,7 @@ const setUpdatedCart = updatedCart => ({
 export const updateCart = (product) => {
   return async (dispatch) => {
     const res = await axios.put('/api/cart', product);
-    const data = res.config.data;
+    const data = res.data;
     dispatch(setUpdatedCart(data));
   }
 }

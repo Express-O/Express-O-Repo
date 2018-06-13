@@ -14,15 +14,17 @@ class SingleProduct extends Component {
 
     render() {
       const { cart, product, selectedProduct, singleProductReviews, userId, isLoggedIn } = this.props;
+
       let qty = 1;
       let productId = this.props.match.params.productId;
-      if (cart[productId]) {
-        qty = cart.productId + 1;
+      if (productId in cart) {
+        qty = cart[productId] + 1;
       }
       const productIdAndQty = {
-        id: this.props.match.params.productId,
+        id: productId,
         quantity: qty
       }
+      console.log(productIdAndQty)
 
       if (!product) {
         return (<div> Loading...</div>)
