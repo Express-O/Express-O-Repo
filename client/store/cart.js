@@ -62,8 +62,6 @@ export const submitOrder = (order) => {
   return async (dispatch) => {
     const res = await axios.post('/api/orders', order)
     const data = res.data
-    //todo: when payment info page is set up it needs to redirect to there here
-
   }
 }
 

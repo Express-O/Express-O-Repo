@@ -5,11 +5,8 @@ const GET_SINGLE_ORDER = 'GET_SINGLE_ORDER'
 //action creator
 export const getSingleOrder = orderid => ({ type: GET_SINGLE_ORDER, orderid })
 
-//thunk
-
 
 //intitial state
-
 const defaultOrder = {}
 
 //reducer
