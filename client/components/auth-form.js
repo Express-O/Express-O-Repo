@@ -95,32 +95,95 @@ class AuthForm extends Component {
                   />
 
                   <label htmlFor="streetName" className="pt-label .modifier"><small>Street Adress:</small></label>
-                  <input name="streetName" type="text" defaultValue={this.state.streetName} />
+                  <input
+                  name="streetName"
+                  type="text"
+                  defaultValue={this.state.streetName}
+                  className="pt-input"
+                  style={{ width: '180px', margin: '0 auto' }}
+                  placeholder="input text here"
+                  dir="auto"
+                  />
 
                   <label htmlFor="apt" className="pt-label .modifier"><small>Apt:</small></label>
-                  <input name="apt" type="text" defaultValue={this.state.apt} />
+                  <input
+                  name="apt"
+                  type="text"
+                  defaultValue={this.state.apt}
+                  className="pt-input"
+                  style={{ width: '180px', margin: '0 auto' }}
+                  placeholder="input text here"
+                  dir="auto"
+                  />
 
                   <label htmlFor="city" className="pt-label .modifier"><small>City:</small></label>
-                  <input name="city" type="text" defaultValue={this.state.city} />
+                  <input
+                  name="city"
+                  type="text"
+                  defaultValue={this.state.city}
+                  className="pt-input"
+                  style={{ width: '180px', margin: '0 auto' }}
+                  placeholder="input text here"
+                  dir="auto"
+                  />
 
                   <label htmlFor="state" className="pt-label .modifier"><small>State:</small></label>
-                  <input name="state" type="text" defaultValue={this.state.state} />
+                  <input
+                  name="state"
+                  type="text"
+                  defaultValue={this.state.state}
+                  className="pt-input"
+                  style={{ width: '180px', margin: '0 auto' }}
+                  placeholder="input text here"
+                  dir="auto"
+                  />
 
                   <label htmlFor="zip" className="pt-label .modifier"><small>Zip:</small></label>
-                  <input name="zip" type="text" defaultValue={this.state.zip} />
+                  <input
+                  name="zip"
+                  type="text"
+                  defaultValue={this.state.zip}
+                  className="pt-input"
+                  style={{ width: '180px', margin: '0 auto' }}
+                  placeholder="input text here"
+                  dir="auto"
+                  />
 
                   <label htmlFor="country" className="pt-label .modifier"><small>Country:</small></label>
-                  <input name="country" type="text" defaultValue={this.state.country} />
+                  <input
+                  name="country"
+                  type="text"
+                  defaultValue={this.state.country}
+                  className="pt-input"
+                  style={{ width: '180px', margin: '0 auto' }}
+                  placeholder="input text here"
+                  dir="auto"
+                  />
                 </div> : null
             }
             <label htmlFor="email"><small>Email</small></label>
-            <input name="email" type="text" defaultValue={this.state.email} />
+            <input
+            name="email"
+            type="text"
+            defaultValue={this.state.email}
+            className="pt-input"
+            style={{ width: '180px', margin: '0 auto' }}
+            placeholder="input email here"
+            dir="auto"
+            />
           </div>
           {
             name !== 'editProfile' &&
             <div>
               <label htmlFor="password"><small>Password</small></label>
-              <input name="password" type="password" />
+              <input
+              name="password"
+              type="password"
+              className="pt-input"
+              style={{ width: '180px', margin: '0 auto' }}
+              placeholder="input password here"
+              dir="auto"
+              />
             </div>
           }
           <div>
