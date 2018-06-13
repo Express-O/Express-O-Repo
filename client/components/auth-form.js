@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { auth, editProfile } from '../store'
-import AdminHome from './AdminHome'
 
 /**
  * COMPONENT
@@ -43,7 +42,7 @@ class AuthForm extends Component {
         zip: evt.target.zip.value,
         country: evt.target.country.value,
         email: evt.target.email.value,
-        password: evt.target.password.value
+        password: evt.target.password.value,
       }
     }
     if (userInfo.formName === 'editProfile') {
@@ -65,13 +64,9 @@ class AuthForm extends Component {
   }
 
   render() {
-    const { name, displayName, error, user } = this.props
+    const { name, displayName, error } = this.props
     return (
       <div>
-        {
-          user && user.isAdmin === true ?
-            <AdminHome /> : null
-        }
         <form onSubmit={this.handleSubmit} name={name}>
           <div>
             {
@@ -152,7 +147,6 @@ const mapSignup = (state) => {
     name: 'signup',
     displayName: 'Sign Up',
     error: state.user.error,
-    user: state.user
   }
 }
 
