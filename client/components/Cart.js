@@ -56,7 +56,7 @@ class Cart extends Component {
     if (Object.keys(cart).length !== 0) {
       return (
         <div>
-          <h2 style={{marginBottom: "0.5em", marginTop: "0.5em"}}>Shopping Cart</h2>
+          <h2 style={{marginBottom: '0.5em', marginTop: '0.5em'}}>Shopping Cart</h2>
           {
 
           cartWithQtyArr.map(product => {
