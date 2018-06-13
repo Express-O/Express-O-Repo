@@ -40,13 +40,16 @@ class Cart extends Component {
 
 
     let subTotal;
-    let cartProductCount;
-    let count = 0
     if (cartWithQtyArr.length) {
       subTotal = cartWithQtyArr.reduce((sum, product) => {
-        count += Number(product.quantity)
-        console.log(count)
         return sum += Number(product.price * product.quantity)
+      }, 0)
+    }
+
+    let cartProductCount;
+    if (cartWithQtyArr.length) {
+      cartProductCount = cartWithQtyArr.reduce((count, product) => {
+        return count += Number(product.quantity)
       }, 0)
     }
 
@@ -69,7 +72,7 @@ class Cart extends Component {
         <hr />
         {
         <div>
-          <h3>Order Subtotal (`${cartProductCount}` items): ${`${subTotal}`}</h3>
+          <h3>Order Subtotal ({`${cartProductCount}`} items): ${`${subTotal}`}</h3>
         </div>
         }
         <div>
