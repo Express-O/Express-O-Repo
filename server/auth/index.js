@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const User = require('../db/models/user')
-const Order = require('../db/models')
+const Order = require('../db/models/order')
 module.exports = router
 
 router.post('/login', (req, res, next) => {
@@ -36,6 +36,20 @@ router.get('/orders', async (req, res, next) => {
   catch (error) { next(error) }
 })
 
+router.put('/orders', async (req, res, next) => {
+  if (!req.user.admin) { res.json('Must be admin to change orders') }
+  try {
+    const [numberOfAffectedRows, affectedRows] = await Order.update(req.body, {
+      where: { id: req.body.id },
+      returning: true,
+      plain: true
+    })
+
+    res.json(affectedRows)
+  }
+  catch (error) { next(error) }
+})
+
 router.post('/signup', (req, res, next) => {
   User.create(req.body)
     .then(user => {
@@ -51,6 +65,7 @@ router.post('/signup', (req, res, next) => {
 })
 
 router.patch('/editProfile', async (req, res, next) => {
+  if (req.user.id !== req.body.id && req.user.isAdmin === false) { res.json('must be the logged in user or admin to delete') }
   try {
     const [numberOfAffectedRows, affectedRows] = await User.update(req.body, {
       where: { id: req.body.id },

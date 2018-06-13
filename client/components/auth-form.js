@@ -42,7 +42,7 @@ class AuthForm extends Component {
         zip: evt.target.zip.value,
         country: evt.target.country.value,
         email: evt.target.email.value,
-        password: evt.target.password.value
+        password: evt.target.password.value,
       }
     }
     if (userInfo.formName === 'editProfile') {
@@ -74,24 +74,24 @@ class AuthForm extends Component {
                 <div>
                   <label htmlFor="firstName" className="pt-label .modifier"><small>First Name:</small></label>
                   <input
-                  name="firstName"
-                  type="text"
-                  defaultValue={this.state.firstName}
-                  className="pt-input"
-                  style={{width: '180px', margin: '0 auto'}}
-                  placeholder="input text here"
-                  dir="auto"
+                    name="firstName"
+                    type="text"
+                    defaultValue={this.state.firstName}
+                    className="pt-input"
+                    style={{ width: '180px', margin: '0 auto' }}
+                    placeholder="input text here"
+                    dir="auto"
                   />
 
                   <label htmlFor="lastName" className="pt-label .modifier"><small>Last Name:</small></label>
                   <input
-                  name="lastName"
-                  type="text"
-                  defaultValue={this.state.lastName}
-                  className="pt-input"
-                  style={{width: '180px', margin: '0 auto'}}
-                  placeholder="input text here"
-                  dir="auto"
+                    name="lastName"
+                    type="text"
+                    defaultValue={this.state.lastName}
+                    className="pt-input"
+                    style={{ width: '180px', margin: '0 auto' }}
+                    placeholder="input text here"
+                    dir="auto"
                   />
 
                   <label htmlFor="streetName" className="pt-label .modifier"><small>Street Adress:</small></label>
@@ -146,7 +146,7 @@ const mapSignup = (state) => {
   return {
     name: 'signup',
     displayName: 'Sign Up',
-    error: state.user.error
+    error: state.user.error,
   }
 }
 
