@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { editProduct, getSingleProduct, fetchProducts } from '../store';
+import AdminHome from './AdminHome'
 
 class EditProduct extends Component {
 
@@ -38,6 +39,7 @@ class EditProduct extends Component {
     }
     return (
       <div>
+        <AdminHome />
         <div className="individualProduct">
           <h1>{product.title}</h1>
           <hr />

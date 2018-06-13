@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { fetchProducts } from '../store/index'
-
+import AdminHome from './AdminHome'
 
 class Inventory extends Component {
   componentDidMount() {
@@ -13,15 +13,7 @@ class Inventory extends Component {
     return (
       <div>
         <hr />
-        <Link to="/admin/home">
-          <button type="button">DASHBOARD</button>
-        </Link>
-        <Link to="/admin/useraccounts">
-          <button type="button">USER ACCOUNTS</button>
-        </Link>
-        <Link to="/admin/addproduct">
-          <button type="button">ADD NEW PRODUCT</button>
-        </Link>
+        <AdminHome />
         <table>
           <tbody>
             <tr>

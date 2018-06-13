@@ -22,6 +22,9 @@ const AdminHome = (props) => {
       <Link to="/admin/allorders">
         <button type="button">VIEW ALL ORDERS</button>
       </Link>
+      <Link to="/admin/home">
+        <button type="button">DASHBOARD</button>
+      </Link>
     </div >
   )
 }

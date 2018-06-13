@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { auth, editProfile } from '../store'
+import AdminHome from './AdminHome'
 
 /**
  * COMPONENT
@@ -64,9 +65,13 @@ class AuthForm extends Component {
   }
 
   render() {
-    const { name, displayName, error } = this.props
+    const { name, displayName, error, user } = this.props
     return (
       <div>
+        {
+          user && user.isAdmin === true ?
+            <AdminHome /> : null
+        }
         <form onSubmit={this.handleSubmit} name={name}>
           <div>
             {
@@ -74,24 +79,24 @@ class AuthForm extends Component {
                 <div>
                   <label htmlFor="firstName" className="pt-label .modifier"><small>First Name:</small></label>
                   <input
-                  name="firstName"
-                  type="text"
-                  defaultValue={this.state.firstName}
-                  className="pt-input"
-                  style={{width: '180px', margin: '0 auto'}}
-                  placeholder="input text here"
-                  dir="auto"
+                    name="firstName"
+                    type="text"
+                    defaultValue={this.state.firstName}
+                    className="pt-input"
+                    style={{ width: '180px', margin: '0 auto' }}
+                    placeholder="input text here"
+                    dir="auto"
                   />
 
                   <label htmlFor="lastName" className="pt-label .modifier"><small>Last Name:</small></label>
                   <input
-                  name="lastName"
-                  type="text"
-                  defaultValue={this.state.lastName}
-                  className="pt-input"
-                  style={{width: '180px', margin: '0 auto'}}
-                  placeholder="input text here"
-                  dir="auto"
+                    name="lastName"
+                    type="text"
+                    defaultValue={this.state.lastName}
+                    className="pt-input"
+                    style={{ width: '180px', margin: '0 auto' }}
+                    placeholder="input text here"
+                    dir="auto"
                   />
 
                   <label htmlFor="streetName" className="pt-label .modifier"><small>Street Adress:</small></label>
@@ -146,7 +151,8 @@ const mapSignup = (state) => {
   return {
     name: 'signup',
     displayName: 'Sign Up',
-    error: state.user.error
+    error: state.user.error,
+    user: state.user
   }
 }
 

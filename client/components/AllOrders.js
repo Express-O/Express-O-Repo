@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavLink, Link, withRouter } from 'react-router-dom'
 import { fetchOrders } from '../store'
+import AdminHome from './AdminHome'
 
 class AllOrders extends Component {
   componentDidMount() {
@@ -23,6 +24,7 @@ class AllOrders extends Component {
     }
     return (
       <div>
+        <AdminHome />
         <NavLink to="/admin/completedorders" className="productlink">Complete</NavLink>
         <NavLink to="/admin/cartorders" className="productlink">In Cart</NavLink>
         <NavLink to="/admin/processingorders" className="productlink">Processing</NavLink>

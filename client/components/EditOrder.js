@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { editOrder, getSingleOrder, fetchOrders } from '../store';
+import AdminHome from './AdminHome'
 
 class EditOrder extends Component {
 
@@ -38,6 +39,7 @@ class EditOrder extends Component {
     }
     return (
       <div>
+        <AdminHome />
         <div>
           <h1>Order Details</h1>
           <p>Order No: {order.id}</p>
