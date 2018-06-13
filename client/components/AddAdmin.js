@@ -33,7 +33,6 @@ class AddAdmin extends Component {
     this.props.auth(this.state)
   }
   render() {
-    console.log('ADD ADMIN FORM STATE===>', this.state)
     return (
       <div>
         <AdminHome />

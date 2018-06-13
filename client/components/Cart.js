@@ -52,8 +52,6 @@ class Cart extends Component {
           {
 
           cartWithQtyArr.map(product => {
-            // let cartId = Math.random()
-            console.log('made it to the map')
             return (
             <ProductCard
               key={product.id}
