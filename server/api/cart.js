@@ -17,12 +17,15 @@ router.get('/', async (req, res, next) => {
 // PUT update cart with product
 router.put('/', (req, res, next) => {
   let cart = req.session.cart || {}
-
+    console.log("STARTING CART", cart)
   if (cart[req.body.id]) {
-    cart[req.body.id] += req.body.quantity;
+    console.log("in the IF", typeof req.body.quantity, req.body.quantity)
+    cart[req.body.id] = +req.body.quantity ;
   } else {
-    cart[req.body.id] = req.body.quantity;
+    console.log("in the ELSE")
+    cart[req.body.id] = +req.body.quantity;
   }
+  console.log("API ROUTE CART=============>", cart);
    res.status(200).json(cart);
 })
 

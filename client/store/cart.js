@@ -35,17 +35,21 @@ const setUpdatedCart = updatedCart => ({
 
 //Thunk Creator
 export const updateCart = (product) => {
+  console.log("PRODUCT FROM THE STORE in UPDATE", product)
   return async (dispatch) => {
     const res = await axios.put('/api/cart', product);
     const data = res.config.data;
+    console.log("data FROM THE STORE in UPDATE", data)
     dispatch(setUpdatedCart(data));
   }
 }
 
 export const fetchCart = () => {
+  console.log('fetchCart triggered ====================================')
   return async (dispatch) => {
     const res = await axios.get('/api/cart');
     const data = res.data;
+    console.log('data in fetch cart', data)
     dispatch(getCart(data))
   }
 }

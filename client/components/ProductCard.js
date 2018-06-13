@@ -23,22 +23,18 @@ class ProductCard extends Component {
 
   handleSubmit (event) {
     event.preventDefault();
-    const { product } = this.props;
+    const { product } = this.props
     console.log('product in handle submit', product)
     let productIdAndQty = {
       id: product.id,
       quantity: this.state.productQty
     }
     this.props.updateCart(productIdAndQty);
-
-    // this.setState({                               // need to set state????????
-    //   productQty: this.state.productQty
-    // })
   }
 
   render () {
     const { product, removeProduct } = this.props
-
+    console.log("Product passed from cart.js", product) //return product with Qty and all attributes
     return (
       <div>
         <NavLink
@@ -47,14 +43,17 @@ class ProductCard extends Component {
         </NavLink>
 
         <form onSubmit={this.handleSubmit}>
-          <label>Quantity</label>
+          <label>Quantity:</label>
           <input type="number" min="1" name="productQty" defaultValue={+product.quantity} onChange={this.handleChange} />
           <button type="submit">Update</button>
         </form>
 
-        <label>Price</label>
-        <p>{product.price}</p>
-        <button type="button" onClick={() => removeProduct(product.id)}>Remove Item</button>
+        <label>Price:</label>
+        <p>${product.price}</p>
+        <div>
+          <button type="button" onClick={() => removeProduct(product.id)}>Remove Item</button>
+        </div>
+      <br />
       </div>
     )
   }
@@ -62,7 +61,7 @@ class ProductCard extends Component {
 
 const mapDispatch = dispatch => {
   return {
-    updateCart: (newCart) => dispatch(updateCart(newCart)),
+    updateCart: (productIdAndQty) => dispatch(updateCart(productIdAndQty)),
     removeProduct: (productId) => dispatch(removeProduct(productId))
   }
 }
