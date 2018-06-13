@@ -4,7 +4,6 @@ import { Link, withRouter } from 'react-router-dom'
 import { fetchUsers, deleteAcct } from '../store/index'
 import AdminHome from './AdminHome'
 
-//need to add a ternary in return for if it is admin show add button
 class AllUsers extends Component {
   componentDidMount() {
     this.props.fetchUsers();

@@ -3,23 +3,6 @@ import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { fetchProducts } from '../store/index'
 
-
-const productListStyles = {
-  display: "flex",
-  flexDirection: "row",
-  flexWrap: "wrap",
-  justifyContent: "center",
-}
-
-const productCardStyles = {
-  maxWidth: "30%",
-  minWidth: "150px",
-  flex: "1",
-  margin: "5px",
-}
-
-
-//need to add a ternary in return for if it is admin show add button
 class AllProducts extends Component {
   componentDidMount() {
     this.props.fetchProducts();
