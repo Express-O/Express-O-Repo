@@ -47,6 +47,10 @@ class Routes extends Component {
             <Route exact path="/admin/useraccounts" component={AllUsers} />
             <Route path="/editprofile" component={EditProfile} />
             <Route exact path="/admin/allorders" component={AllOrders} />
+            <Route exact path="/admin/completedorders" component={AllOrders} />
+            <Route exact path="/admin/cartorders" component={AllOrders} />
+            <Route exact path="/admin/processingorders" component={AllOrders} />
+            <Route exact path="/admin/cancelledorders" component={AllOrders} />
             <Route exact path="/admin/editorder/:orderId" component={EditOrder} />
           </Switch>
         }

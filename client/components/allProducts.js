@@ -28,29 +28,29 @@ class AllProducts extends Component {
   render() {
     const { allProducts, allDrinks, allSwag, location } = this.props;
     let arr;
-    if (location.pathname === '/product/coffee'){
+    if (location.pathname === '/product/coffee') {
       arr = allDrinks;
-    } else if (location.pathname === '/product/swag'){
+    } else if (location.pathname === '/product/swag') {
       arr = allSwag;
     } else {
       arr = allProducts;
     }
     return (
       <div>
-
         <div className="allproducts">
           {
             arr.map(product => {
-            return (
-              <Link to={`/products/${product.id}`} key={product.id} className="singleproduct">
-                <div className="singleproductimg">
-                  <img src ={product.photo} />
-                </div>
-                <div className="singleproductinfo">
-                  <p className="singleproducttitle">{product.title}  ${product.price}</p>
-                </div>
-              </Link>
-            )})
+              return (
+                <Link to={`/products/${product.id}`} key={product.id} className="singleproduct">
+                  <div className="singleproductimg">
+                    <img src={product.photo} />
+                  </div>
+                  <div className="singleproductinfo">
+                    <p className="singleproducttitle">{product.title}  ${product.price}</p>
+                  </div>
+                </Link>
+              )
+            })
           }
         </div>
       </div>
