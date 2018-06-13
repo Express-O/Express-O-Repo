@@ -111,6 +111,12 @@ img {
 .footer-container {
  display: flex;
  justify-content: center;
+ margin-top: 1em;
+ bottom:0;
+}
+
+.footer-items {
+  padding: 2em;
 }
 
 .home-container{
@@ -138,7 +144,7 @@ img {
 
 .admin-home-container {
   display: flex;
-  height: 37em;
+  height: 2em;
   width: 60em;
   flex-wrap: wrap;
   justify-content: center;
@@ -156,3 +162,5 @@ img {
   width: 100%;
   height: 100%;
 }
+
+
