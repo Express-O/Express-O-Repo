@@ -15,7 +15,6 @@ class ProductCard extends Component {
   }
 
   handleChange (event) {
-    console.log('event target value', event.target.value)
     this.setState({
       productQty: event.target.value
     })
@@ -24,7 +23,6 @@ class ProductCard extends Component {
   handleSubmit (event) {
     event.preventDefault();
     const { product } = this.props
-    console.log('product in handle submit', product)
     let productIdAndQty = {
       id: product.id,
       quantity: this.state.productQty
@@ -34,7 +32,6 @@ class ProductCard extends Component {
 
   render () {
     const { product, removeProduct } = this.props
-    console.log("Product passed from cart.js", product) //return product with Qty and all attributes
     return (
       <div>
         <NavLink
