@@ -4,7 +4,7 @@
  * having to figure out which file they belong to!
  */
 export { default as Navbar } from './navbar'
-export { default as UserHome } from './user-home'
+export { UserProfile, UserDetail } from './user-home'
 export { Login, Signup, EditProfile } from './auth-form'
 export { default as SingleProduct } from './SingleProduct'
 export { default as AllProducts } from './AllProducts'
@@ -20,3 +20,5 @@ export { default as AdminHome } from './AdminHome'
 export { default as Inventory } from './Inventory'
 export { default as AllUsers } from './AllUsers'
 export { default as AllOrders } from './AllOrders'
+export { default as EditOrder } from './EditOrder'
+export { default as AddAdmin } from './AddAdmin'

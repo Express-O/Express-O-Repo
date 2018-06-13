@@ -37,7 +37,7 @@ const setUpdatedCart = updatedCart => ({
 export const updateCart = (product) => {
   return async (dispatch) => {
     const res = await axios.put('/api/cart', product);
-    const data = res.data;
+    const data = res.config.data;
     dispatch(setUpdatedCart(data));
   }
 }
@@ -62,8 +62,6 @@ export const submitOrder = (order) => {
   return async (dispatch) => {
     const res = await axios.post('/api/orders', order)
     const data = res.data
-    //todo: when payment info page is set up it needs to redirect to there here
-
   }
 }
 

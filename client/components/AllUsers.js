@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 import { fetchUsers, deleteAcct } from '../store/index'
+import AdminHome from './AdminHome'
 
-//need to add a ternary in return for if it is admin show add button
 class AllUsers extends Component {
   componentDidMount() {
     this.props.fetchUsers();
@@ -14,15 +14,7 @@ class AllUsers extends Component {
     return (
       <div>
         <hr />
-        <Link to="/admin/home">
-          <button type="button">DASHBOARD</button>
-        </Link>
-        <Link to="/admin/useraccounts">
-          <button type="button">USER ACCOUNTS</button>
-        </Link>
-        <Link to="/admin/addproduct">
-          <button type="button">ADD NEW PRODUCT</button>
-        </Link>
+        <AdminHome />
         <table>
           <tr>
             <th>User Id</th>
@@ -39,7 +31,7 @@ class AllUsers extends Component {
                   <td>{user.email}</td>
                   <td>{user.fullAddress}</td>
                   <td><Link to="/orderhistory">Order History </Link></td>
-                  <td><Link to="/editprofile">Edit/Details</Link></td>
+                  <td><Link to={`/admin/editprofile/${user.id}`}>Details</Link></td>
                   <td>
                     <button type="button" onClick={() => deleteUser(user.id)}>DELETE ACCOUNT</button>
                   </td>

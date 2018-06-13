@@ -9,9 +9,11 @@ import allProducts from './allProducts'
 import singleProductReviews from './singleProductReviews'
 import cart from './cart'
 import allUsers from './allUsers'
+import allOrders from './allOrders'
+import singleOrder from './singleOrder'
 
 
-const reducer = combineReducers({ user, product, allProducts, singleProductReviews, cart, allUsers })
+const reducer = combineReducers({ user, product, allProducts, singleProductReviews, cart, allUsers, allOrders, singleOrder })
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware.withExtraArgument({ axios }),
   createLogger({ collapsed: true })
@@ -25,3 +27,5 @@ export * from './allProducts'
 export * from './singleProductReviews'
 export * from './cart'
 export * from './allUsers'
+export * from './allOrders'
+export * from './singleOrder'

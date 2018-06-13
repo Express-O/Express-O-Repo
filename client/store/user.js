@@ -90,13 +90,3 @@ export default function (state = defaultUser, action) {
   }
 }
 
-// export const editProfile = (userInfo) =>
-//   dispatch =>
-//     axios.put(`/auth/${userInfo.formName}`, userInfo)
-//       .then(res => {
-//         dispatch(getUser(res.data))
-//         history.push('/home')
-//       }, authError => { // rare example: a good use case for parallel (non-catch) error handler
-//         dispatch(getUser({ error: authError }))
-//       })
-//       .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
