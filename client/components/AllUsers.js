@@ -32,7 +32,7 @@ class AllUsers extends Component {
                   <td>{user.email}</td>
                   <td>{user.fullAddress}</td>
                   <td><Link to="/orderhistory">Order History </Link></td>
-                  <td><Link to="/admin/editprofile">Edit/Details</Link></td>
+                  <td><Link to={`/admin/editprofile/${user.id}`}>Details</Link></td>
                   <td>
                     <button type="button" onClick={() => deleteUser(user.id)}>DELETE ACCOUNT</button>
                   </td>

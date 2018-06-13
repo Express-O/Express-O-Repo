@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, SingleProduct, AllProducts, HomePage, NewProduct, EditProduct, ReviewForm, Cart, EditProfile, Inventory, AdminHome, AllUsers, AllOrders, EditOrder, AddAdmin } from './components'
+import { Login, Signup, UserProfile, UserDetail, SingleProduct, AllProducts, HomePage, NewProduct, EditProduct, ReviewForm, Cart, EditProfile, Inventory, AdminHome, AllUsers, AllOrders, EditOrder, AddAdmin } from './components'
 import { me } from './store'
 
 /**
@@ -32,7 +32,7 @@ class Routes extends Component {
         {
           isLoggedInUser &&
           <Switch>
-            <Route path="/home" component={UserHome} />
+            <Route path="/home" component={UserProfile} />
             <Route path="/editprofile" component={EditProfile} />
             <Route path="/cart" component={Cart} />
           </Switch>
@@ -41,12 +41,12 @@ class Routes extends Component {
           isLoggedInAdmin &&
           <Switch>
             <Route path="/admin/home" component={AdminHome} />
-            <Route path="/admin/profile" component={UserHome} />
+            {/* <Route path="/admin/profile" component={UserDetail} /> */}
             <Route exact path="/admin/editproduct/:productId" component={EditProduct} />
             <Route exact path="/admin/inventory" component={Inventory} />
             <Route path="/admin/addproduct" component={NewProduct} />
             <Route exact path="/admin/useraccounts" component={AllUsers} />
-            <Route path="/admin/editprofile" component={EditProfile} />
+            <Route path="/admin/editprofile/:profileId" component={UserDetail} />
             <Route exact path="/admin/allorders" component={AllOrders} />
             <Route exact path="/admin/completedorders" component={AllOrders} />
             <Route exact path="/admin/cartorders" component={AllOrders} />
