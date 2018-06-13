@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { editProduct, getSingleProduct, fetchProducts } from '../store';
+import AdminHome from './AdminHome'
 
 class EditProduct extends Component {
 
@@ -38,12 +39,19 @@ class EditProduct extends Component {
     }
     return (
       <div>
-        <div>
+        <AdminHome />
+        <div className="individualProduct">
           <h1>{product.title}</h1>
           <hr />
-          <img src={product.photo} />
-          <p>Details: {product.description}</p>
-          <p>Price: ${product.price}</p>
+          <div className="indprodcontainer">
+            <div className="indproductimg">
+              <img className="indivimg" src={product.photo} />
+            </div>
+            <div className="indivproductdesc" >
+              <p>Details: {product.description}</p>
+              <p>Price: ${product.price}</p>
+            </div>
+          </div>
         </div>
         <h1>Edit Product Form</h1>
         <form onSubmit={this.handleSubmit}>

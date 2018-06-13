@@ -69,8 +69,7 @@ export default function (state = defaultAllProducts, action) {
         }
         return product
       })
-      return updatedProduct;
-
+      return updatedProduct
     default:
       return state
   }
