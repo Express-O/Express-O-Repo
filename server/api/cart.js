@@ -15,11 +15,15 @@ router.get('/', async (req, res, next) => {
 // PUT update cart with product
 router.put('/', (req, res, next) => {
   let cart = req.session.cart || {}
-  if (cart[req.body.id]) {
-    cart[req.body.id] = +req.body.quantity ;
-  } else {
-    cart[req.body.id] = +req.body.quantity;
-  }
+  console.log('before', cart)
+  cart[req.body.id] = +req.body.quantity ;
+
+  // if (req.body.id in cart) {
+  //   cart[req.body.id] = +req.body.quantity ;
+  // } else {
+  //   cart[req.body.id] = +req.body.quantity;
+  // }
+  console.log('after', cart)
    res.status(200).json(cart);
 })
 
