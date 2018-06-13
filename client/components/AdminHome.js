@@ -7,6 +7,9 @@ const AdminHome = (props) => {
   return (
     <div>
       <h3>Welcome, {props.user.firstName} {props.user.lastName}</h3>
+      <Link to="/admin/profile">
+        <button type="button">ADMIN PROFILE</button>
+      </Link>
       <Link to="/admin/inventory">
         <button type="button">VIEW PRODUCT INVENTORY</button>
       </Link>

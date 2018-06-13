@@ -41,6 +41,7 @@ class Routes extends Component {
           isLoggedInAdmin &&
           <Switch>
             <Route path="/admin/home" component={AdminHome} />
+            <Route path="/admin/profile" component={UserHome} />
             <Route exact path="/admin/editproduct/:productId" component={EditProduct} />
             <Route exact path="/admin/inventory" component={Inventory} />
             <Route path="/admin/addproduct" component={NewProduct} />
@@ -52,7 +53,7 @@ class Routes extends Component {
             <Route exact path="/admin/processingorders" component={AllOrders} />
             <Route exact path="/admin/cancelledorders" component={AllOrders} />
             <Route exact path="/admin/editorder/:orderId" component={EditOrder} />
-            <Route exact path="admin/createadmin" component={AddAdmin} />
+            <Route exact path="/admin/createadmin" component={AddAdmin} />
           </Switch>
         }
         {/* Displays our Login component as a fallback if the route does not match any of the aboves*/}
