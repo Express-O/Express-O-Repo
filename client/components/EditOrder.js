@@ -38,6 +38,13 @@ class EditOrder extends Component {
     }
     return (
       <div>
+        <div>
+          <h1>Order Details</h1>
+          <p>Order No: {order.id}</p>
+          <p>Customer Id: {order.userId}</p>
+          <p>Current Status: {order.status}</p>
+          <p>Gross Price: ${order.total}</p>
+        </div>
         <h1>Edit Order</h1>
         <form onSubmit={this.handleSubmit}>
           <label>
@@ -46,7 +53,7 @@ class EditOrder extends Component {
           <input type="text" name="id" value={this.state.id} onChange={this.handleChange} />
 
           <label>
-            Purchased by
+            Customer Id
           </label>
           <input type="text" name="userId" value={this.state.userId} onChange={this.handleChange} />
 
