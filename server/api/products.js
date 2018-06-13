@@ -19,7 +19,6 @@ router.get('/:productId', async (req, res, next) => {
 })
 
 //POST a review for a product
-//Blocker: this post is missing a user which will cause the SingleProduct view to fail
 router.post('/:productId/:userId/review', async (req, res, next) => {
   const productId = req.params.productId;
   const userId = req.params.userId;

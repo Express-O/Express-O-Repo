@@ -5,29 +5,36 @@ import { fetchOrders } from '../store'
 
 class AllOrders extends Component {
   componentDidMount() {
-    fetchOrders()
+    this.props.fetchOrders()
   }
 
   render() {
     const { allOrders } = this.props
+    if (!allOrders) {
+      return (<div>Loading ... </div>)
+    }
     return (
       <div>
         <table>
-          <tr>
-            <th>Order Id</th>
-            <th>User Id</th>
-            <th>Status</th>
-            <th>Total</th>
-          </tr>
+          <tbody>
+            <tr>
+              <th>Order Id</th>
+              <th>User Id</th>
+              <th>Status</th>
+              <th>Total</th>
+            </tr>
+          </tbody>
           {
             allOrders.map(order => {
               return (
                 <tbody key={order.id}>
-                  <td>{order.id}</td>
-                  <td>{order.userId}</td>
-                  <td>{order.status}</td>
-                  <td>{order.total}</td>
-                  <td><Link to="/editorder">Edit/Details</Link></td>
+                  <tr>
+                    <td>{order.id}</td>
+                    <td>{order.userId}</td>
+                    <td>{order.status}</td>
+                    <td>{order.total}</td>
+                    <td><Link to={`/admin/editorder/${order.id}`}>Edit/Details</Link></td>
+                  </tr>
                 </tbody>
               )
             })

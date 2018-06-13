@@ -23,24 +23,28 @@ class Inventory extends Component {
           <button type="button">ADD NEW PRODUCT</button>
         </Link>
         <table>
-          <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Category</th>
-            <th>In-Depth</th>
-          </tr>
+          <tbody>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Category</th>
+              <th>In-Depth</th>
+            </tr>
+          </tbody>
           {
             inventory.map(item => {
               return (
                 <tbody key={item.id}>
-                  <td>{item.id}</td>
-                  <td>{item.title}</td>
-                  <td>{item.inventory}</td>
-                  <td>{item.price}</td>
-                  <td>{item.category}</td>
-                  <td><Link to={`/admin/editproduct/${item.id}`}>Edit/Details</Link></td>
+                  <tr>
+                    <td>{item.id}</td>
+                    <td>{item.title}</td>
+                    <td>{item.inventory}</td>
+                    <td>{item.price}</td>
+                    <td>{item.category}</td>
+                    <td><Link to={`/admin/editproduct/${item.id}`}>Edit/Details</Link></td>
+                  </tr>
                 </tbody>
               )
             })

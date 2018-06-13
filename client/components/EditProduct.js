@@ -38,12 +38,18 @@ class EditProduct extends Component {
     }
     return (
       <div>
-        <div>
+        <div className="individualProduct">
           <h1>{product.title}</h1>
           <hr />
-          <img src={product.photo} />
-          <p>Details: {product.description}</p>
-          <p>Price: ${product.price}</p>
+          <div className="indprodcontainer">
+            <div className="indproductimg">
+              <img className="indivimg" src={product.photo} />
+            </div>
+            <div className="indivproductdesc" >
+              <p>Details: {product.description}</p>
+              <p>Price: ${product.price}</p>
+            </div>
+          </div>
         </div>
         <h1>Edit Product Form</h1>
         <form onSubmit={this.handleSubmit}>

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, SingleProduct, AllProducts, HomePage, NewProduct, EditProduct, ReviewForm, Cart, EditProfile, Inventory, AdminHome, AllUsers, AllOrders } from './components'
+import { Login, Signup, UserHome, SingleProduct, AllProducts, HomePage, NewProduct, EditProduct, ReviewForm, Cart, EditProfile, Inventory, AdminHome, AllUsers, AllOrders, EditOrder } from './components'
 import { me } from './store'
 
 /**
@@ -46,7 +46,8 @@ class Routes extends Component {
             <Route path="/admin/addproduct" component={NewProduct} />
             <Route exact path="/admin/useraccounts" component={AllUsers} />
             <Route path="/editprofile" component={EditProfile} />
-            <Route path="/admin/allorders" component={AllOrders} />
+            <Route exact path="/admin/allorders" component={AllOrders} />
+            <Route exact path="/admin/editorder/:orderId" component={EditOrder} />
           </Switch>
         }
         {/* Displays our Login component as a fallback if the route does not match any of the aboves*/}
