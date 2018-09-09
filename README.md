@@ -2,4 +2,20 @@ Welcome to Express-O !
 
 An e-commerce platform where users create, manage, and run an e-commerce site.
 
-Developed with Node.js, Postgres, Sequelize, Express, React-Redux
+## Requirements
+1. Node.js
+2. NPM
+
+You can start your server by
+```
+npm install
+npm start
+```
+
+## Technologies Used
+* [React](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
+* [Node.js](https://nodejs.org/en/)
+* [Express](https://expressjs.com/)
+* [PostgresSQL](https://www.postgresql.org/) and [Sequelize](http://docs.sequelizejs.com/)
+
