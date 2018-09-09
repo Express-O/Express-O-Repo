@@ -1,4 +1,4 @@
-Welcome to Express-O !
+Welcome to [Express-O](https://express-o.herokuapp.com/) !
 
 An e-commerce platform where users create, manage, and run an e-commerce site.
 
